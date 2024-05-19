@@ -28,8 +28,7 @@ export default function CalendarWeekly({
         display: 'flex',
         overflowX: 'auto',
         flexWrap: 'wrap'
-      }}
-    >
+      }}>
       {days.map((day, index) => {
         const dayKey = format(day, 'yyyy-MM-dd');
         const appointmentsForDay = appointments.filter((appointment) => {

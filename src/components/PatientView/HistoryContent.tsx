@@ -46,8 +46,7 @@ const CollapsibleHistoryBox = ({
               maxWidth: 'inherit',
               textWrap: 'wrap',
               padding: '0px 0px 20px 20px'
-            }}
-          >
+            }}>
             <h4>
               Reason for visit:{' '}
               <span style={{ fontWeight: 'normal' }}>{reason}</span>

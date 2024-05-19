@@ -224,7 +224,7 @@ export default function CommandBar({
         if (res) {
           return `Note taken on ${res.date} by ${res.author} has summary: ${res.summary} and content: ${res.content}`;
         } else {
-          return `Note not found`;
+          return 'Note not found';
         }
       }
       return 'Error: "/fn" command must include a string to search for in note summaries, such as "/fn mental health"';
@@ -405,8 +405,7 @@ export default function CommandBar({
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center'
-          }}
-        >
+          }}>
           <TextField id={'tfAllergen'} label={'Allergen'} />
           <TextField id={'tfSeverity'} label={'Severity'} />
           <TextField id={'tfReaction'} label={'Reaction'} />
@@ -421,8 +420,7 @@ export default function CommandBar({
                 (document.getElementById('tfReaction') as HTMLInputElement)
                   .value
               );
-            }}
-          >
+            }}>
             Enter
           </Button>
         </Box>
@@ -436,8 +434,7 @@ export default function CommandBar({
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center'
-          }}
-        >
+          }}>
           <TextField id={'tfOperation'} label={'Operation'} />
           <TextField id={'tfReason'} label={'Reason'} />
           <TextField id={'tfDate'} label={'Date YYYY/MM/DD'} />
@@ -450,8 +447,7 @@ export default function CommandBar({
                 (document.getElementById('tfReason') as HTMLInputElement).value,
                 (document.getElementById('tfDate') as HTMLInputElement).value
               );
-            }}
-          >
+            }}>
             Enter
           </Button>
         </Box>
@@ -465,8 +461,7 @@ export default function CommandBar({
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center'
-          }}
-        >
+          }}>
           <TextField id={'tfCondition'} label={'Condition'} />
           <TextField id={'tfRelative'} label={'Relative'} />
           <Button
@@ -479,8 +474,7 @@ export default function CommandBar({
                   .value,
                 1
               );
-            }}
-          >
+            }}>
             Enter
           </Button>
         </Box>
@@ -499,8 +493,7 @@ export default function CommandBar({
       return (
         <Dialog onClose={toggleDialogOpen} open={dialogOpen}>
           <DialogTitle
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
-          >
+            sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <h4>Enter history</h4>
             <IconButton size={'small'} onClick={toggleDialogOpen}>
               <Close />
@@ -520,8 +513,7 @@ export default function CommandBar({
       return (
         <Dialog onClose={toggleDialogOpen} open={dialogOpen}>
           <DialogTitle
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
-          >
+            sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <h4>Enter a prescription</h4>
             <IconButton size={'small'} onClick={toggleDialogOpen}>
               <Close />
@@ -542,8 +534,7 @@ export default function CommandBar({
                   .value,
                 (document.getElementById('tfReason') as HTMLInputElement).value
               );
-            }}
-          >
+            }}>
             Enter
           </Button>
           <h3>{commandExtra}</h3>
@@ -554,13 +545,11 @@ export default function CommandBar({
       if (mostRecentCommand === '/n') {
         return (
           <Dialog
-            PaperProps={{ style: { marginTop: `-40vh` } }}
+            PaperProps={{ style: { marginTop: '-40vh' } }}
             onClose={toggleDialogOpen}
-            open={dialogOpen}
-          >
+            open={dialogOpen}>
             <DialogTitle
-              sx={{ display: 'flex', justifyContent: 'space-between' }}
-            >
+              sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <StyledDialogueText>
                 Enter note. Format must be: [note] | [summary]
               </StyledDialogueText>
@@ -593,8 +582,7 @@ export default function CommandBar({
                     ) as HTMLInputElement
                   ).value
                 );
-              }}
-            >
+              }}>
               Enter
             </Button>
             <StyledDialogueText>{commandExtra}</StyledDialogueText>
@@ -605,11 +593,9 @@ export default function CommandBar({
           <Dialog
             onClose={toggleDialogOpen}
             open={dialogOpen}
-            PaperProps={{ style: { marginTop: `-40vh` } }}
-          >
+            PaperProps={{ style: { marginTop: '-40vh' } }}>
             <DialogTitle
-              sx={{ display: 'flex', justifyContent: 'space-between' }}
-            >
+              sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <StyledDialogueText>Enter Measurement</StyledDialogueText>
               <IconButton size={'small'} onClick={toggleDialogOpen}>
                 <Close />
@@ -640,8 +626,7 @@ export default function CommandBar({
                     ) as HTMLInputElement
                   ).value
                 );
-              }}
-            >
+              }}>
               Enter
             </Button>
             <StyledDialogueText>{commandExtra}</StyledDialogueText>
@@ -651,13 +636,11 @@ export default function CommandBar({
     } else {
       return (
         <Dialog
-          PaperProps={{ style: { marginTop: `-40vh` } }}
+          PaperProps={{ style: { marginTop: '-40vh' } }}
           onClose={toggleDialogOpen}
-          open={dialogOpen}
-        >
+          open={dialogOpen}>
           <DialogTitle
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
-          >
+            sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <StyledDialogueText>{mostRecentCommand}</StyledDialogueText>
             <IconButton size={'small'} onClick={toggleDialogOpen}>
               <Close />
@@ -696,8 +679,7 @@ export default function CommandBar({
         onClick={() => {
           onBarEnter();
         }}
-        style={{ color: '#47619A' }}
-      >
+        style={{ color: '#47619A' }}>
         Enter
       </Button>
       {renderDialog()}

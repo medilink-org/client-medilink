@@ -182,8 +182,7 @@ export default function SynopsisContent({
           autoFocus={true}
           value={synopsisText ?? ''}
           onKeyDown={handleKeyDown}
-          onChange={(e) => setSynopsisText(e.target.value)}
-        ></textarea>
+          onChange={(e) => setSynopsisText(e.target.value)}></textarea>
       </label>
       <br />
       <button
@@ -194,8 +193,7 @@ export default function SynopsisContent({
           padding: '10px',
           marginTop: '10px'
         }}
-        onClick={handleSynopsisSubmit}
-      >
+        onClick={handleSynopsisSubmit}>
         Submit Synopsis
       </button>
       <button
@@ -207,8 +205,7 @@ export default function SynopsisContent({
           color: 'white',
           backgroundColor: '#4e6316'
         }}
-        onClick={() => setModalVisible(true)}
-      >
+        onClick={() => setModalVisible(true)}>
         + New Request
       </button>
 
@@ -233,8 +230,7 @@ export default function SynopsisContent({
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 1000
-          }}
-        >
+          }}>
           <div
             style={{
               fontFamily: 'Arial, sans-serif', // Set font to Arial
@@ -245,12 +241,10 @@ export default function SynopsisContent({
               width: '70%', // Increase modal width
               maxWidth: 500, // Set maximum modal width
               textAlign: 'center' // Center align modal content
-            }}
-          >
+            }}>
             <button
               onClick={closeModal}
-              style={{ position: 'absolute', top: 5, right: 5 }}
-            >
+              style={{ position: 'absolute', top: 5, right: 5 }}>
               X
             </button>
             <div style={{ marginBottom: '5px', fontSize: '20px' }}>
@@ -271,8 +265,7 @@ export default function SynopsisContent({
                   border: 'none', // Remove border
                   cursor: 'pointer', // Change cursor to pointer
                   fontSize: '16px' // Increase font size
-                }}
-              >
+                }}>
                 Follow up
               </button>
               <button
@@ -289,8 +282,7 @@ export default function SynopsisContent({
                   border: 'none', // Remove border
                   cursor: 'pointer', // Change cursor to pointer
                   fontSize: '16px' // Increase font size
-                }}
-              >
+                }}>
                 Referral
               </button>
               <button
@@ -307,8 +299,7 @@ export default function SynopsisContent({
                   border: 'none', // Remove border
                   cursor: 'pointer', // Change cursor to pointer
                   fontSize: '16px' // Increase font size
-                }}
-              >
+                }}>
                 Prescription
               </button>
               <button
@@ -325,8 +316,7 @@ export default function SynopsisContent({
                   border: 'none', // Remove border
                   cursor: 'pointer', // Change cursor to pointer
                   fontSize: '16px' // Increase font size
-                }}
-              >
+                }}>
                 Lab Request
               </button>
             </div>

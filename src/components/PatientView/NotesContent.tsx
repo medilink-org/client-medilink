@@ -22,8 +22,7 @@ const CollapsibleOuterBox = ({ date, notes }) => {
           justifyItems: 'start',
           maxWidth: 'inherit',
           textWrap: 'wrap'
-        }}
-      >
+        }}>
         <CCardHeader
           component="h2"
           style={{
@@ -34,8 +33,7 @@ const CollapsibleOuterBox = ({ date, notes }) => {
             backgroundColor: '#f5f5f5',
             borderBottom: '1px solid #ddddddee'
           }}
-          onClick={toggleVisibility}
-        >
+          onClick={toggleVisibility}>
           <IconButton sx={{ justifyContent: 'flex-end' }}>
             {isVisible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </IconButton>
@@ -47,8 +45,7 @@ const CollapsibleOuterBox = ({ date, notes }) => {
             style={{
               padding: '10px 10px 10px 10px',
               margin: '5px 0px 5px 0px'
-            }}
-          >
+            }}>
             {notes.map((note, index) => (
               <CollapsibleInnerBox
                 key={index}
@@ -77,16 +74,14 @@ const CollapsibleInnerBox = ({ content, author, summary }) => {
       key={content}
       style={{
         whiteSpace: 'pre-line'
-      }}
-    >
+      }}>
       <CCard key={content}>
         <CCardBody
           style={{
             maxWidth: 'inherit',
             justifyItems: 'start',
             textWrap: 'wrap'
-          }}
-        >
+          }}>
           <CCardHeader
             component="h3"
             style={{
@@ -96,8 +91,7 @@ const CollapsibleInnerBox = ({ content, author, summary }) => {
               backgroundColor: '#e5e5e5e5',
               borderBottom: '1px solid #ddddddee'
             }}
-            onClick={toggleVisibility}
-          >
+            onClick={toggleVisibility}>
             <IconButton sx={{ justifyContent: 'flex-end' }}>
               {isVisible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
@@ -109,8 +103,7 @@ const CollapsibleInnerBox = ({ content, author, summary }) => {
                 marginTop: '0px',
                 marginBottom: '18px',
                 marginLeft: '38px'
-              }}
-            >
+              }}>
               {'\n' + content}
             </CCardText>
           )}
@@ -129,8 +122,7 @@ const InnerContent = (props) => {
         height: 'auto',
         overflow: 'auto',
         borderRadius: '10px'
-      }}
-    >
+      }}>
       {groupedNotes.map(({ date, notes }) => (
         <CollapsibleOuterBox key={date} date={date} notes={notes} />
       ))}
@@ -288,8 +280,7 @@ export default function NotesContent({
           marginBottom: '10px',
           fontSize: '1em'
         }}
-        onClick={() => setModalVisible(true)}
-      >
+        onClick={() => setModalVisible(true)}>
         Add a note summary
       </button>
       <InnerContent notes={reversedNotes} />
@@ -309,20 +300,17 @@ export default function NotesContent({
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 1000
-          }}
-        >
+          }}>
           <div
             style={{
               backgroundColor: '#FFF',
               padding: 20,
               borderRadius: 10,
               position: 'relative'
-            }}
-          >
+            }}>
             <button
               onClick={closeModal}
-              style={{ position: 'absolute', top: 5, right: 5 }}
-            >
+              style={{ position: 'absolute', top: 5, right: 5 }}>
               X
             </button>
             <div style={modalElementStyle}>

@@ -16,8 +16,7 @@ const Medications = ({
         maxWidth: 'inherit',
         textWrap: 'wrap',
         padding: '0px 0px 20px 20px'
-      }}
-    >
+      }}>
       <List>
         {prescriptions.map((prescription, index) => (
           <React.Fragment key={index}>
@@ -54,8 +53,7 @@ const MedicalHistory = ({ history }: { history: Operation[] }) => (
           maxWidth: 'inherit',
           textWrap: 'wrap',
           padding: '0px 0px 20px 20px'
-        }}
-      >
+        }}>
         <List>
           {history.map((item, index) => (
             <React.Fragment key={index}>
@@ -91,8 +89,7 @@ const Allergies = ({ allergies }: { allergies: Allergy[] }) => (
         maxWidth: 'inherit',
         textWrap: 'wrap',
         padding: '0px 0px 20px 20px'
-      }}
-    >
+      }}>
       <List>
         {allergies.map((item, index) => (
           <ListItem key={index} style={{}}>
@@ -113,8 +110,7 @@ const FamilyHistory = ({ familyHistory }: { familyHistory: Condition[] }) => (
         maxWidth: 'inherit',
         textWrap: 'wrap',
         padding: '0px 0px 20px 20px'
-      }}
-    >
+      }}>
       <List>
         {familyHistory.map((item, index) => (
           <ListItem key={index}>

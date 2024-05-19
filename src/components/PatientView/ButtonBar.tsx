@@ -7,8 +7,7 @@ const ButtonBar = ({ activeTab, setActiveTab, style }) => (
         <ButtonWrapper
           key={button}
           onClick={() => setActiveTab(button.toLowerCase())}
-          className={activeTab === button.toLowerCase() ? 'active' : ''}
-        >
+          className={activeTab === button.toLowerCase() ? 'active' : ''}>
           {button}
         </ButtonWrapper>
       )

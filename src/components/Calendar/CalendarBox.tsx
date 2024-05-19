@@ -37,8 +37,7 @@ export default function CalendarBox({
         width: '22rem',
         marginLeft: 2,
         padding: 2
-      }}
-    >
+      }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <StaticDatePicker
           displayStaticWrapperAs="desktop"

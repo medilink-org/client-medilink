@@ -45,8 +45,7 @@ export default function SummaryBox({
           width: '22rem',
           marginLeft: 2,
           borderRadius: '10px 10px 10px 10px'
-        }}
-      >
+        }}>
         {' '}
         {/*header box*/}
         <Box
@@ -54,8 +53,7 @@ export default function SummaryBox({
             backgroundColor: '#8198A0',
             borderRadius: '10px 10px 0px 0px',
             textAlign: 'center'
-          }}
-        >
+          }}>
           {' '}
           {appointment ? (
             <h2 style={{ margin: '10px' }}>Next Appointment</h2>
@@ -68,8 +66,7 @@ export default function SummaryBox({
           sx={{
             paddingLeft: 2,
             paddingBottom: 0.5
-          }}
-        >
+          }}>
           {appointment ? (
             <>
               {' '}
@@ -82,8 +79,7 @@ export default function SummaryBox({
                     patient: patient,
                     practitioner: practitioner
                   }}
-                  style={{ textDecoration: 'none', color: '#000000' }}
-                >
+                  style={{ textDecoration: 'none', color: '#000000' }}>
                   {patient.name}
                 </Link>
               </p>
