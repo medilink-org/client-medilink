@@ -43,8 +43,7 @@ export default function DayColumn({
                 }),
                 practitioner: practitioner,
                 appointment: appointment
-              }}
-            >
+              }}>
               <AppointmentEntry key={index}>
                 <AppointmentTime>
                   {format(new Date(appointment.date), 'h:mm a')}{' '}

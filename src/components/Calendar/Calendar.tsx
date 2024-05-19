@@ -44,8 +44,7 @@ export default function Calendar({
           backgroundColor: '#8198A0',
           borderRadius: '10px 10px 0px 0px',
           maxHeight: '60px'
-        }}
-      >
+        }}>
         <DateHeader id="selectedDate">
           <h3 style={{ color: 'black', paddingLeft: '20px' }}>
             {formatDateDisplay()}
@@ -53,8 +52,7 @@ export default function Calendar({
         </DateHeader>
         <ButtonsContainer
           id="dailyWeekly"
-          style={{ backgroundColor: '#8198A0' }}
-        >
+          style={{ backgroundColor: '#8198A0' }}>
           <Button
             style={{
               border: '1px solid grey',
@@ -64,8 +62,7 @@ export default function Calendar({
             className={calendarView === 1 ? 'active' : ''}
             onClick={() => {
               setCalendarView(1);
-            }}
-          >
+            }}>
             Daily
           </Button>
           <div style={{ padding: '4px' }}></div>
@@ -78,8 +75,7 @@ export default function Calendar({
             className={calendarView === 2 ? 'active' : ''}
             onClick={() => {
               setCalendarView(2);
-            }}
-          >
+            }}>
             Weekly
           </Button>
         </ButtonsContainer>

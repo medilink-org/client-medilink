@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 interface Props {
   patient: Patient;
@@ -80,8 +80,7 @@ const AppointmentCard = ({ patient, practitioner, appointment }: Props) => {
           patient: patient,
           practitioner: practitioner,
           appointment: appointment
-        }}
-      >
+        }}>
         <ApppointmentName>{patient.name}</ApppointmentName>
         <AppointmentDetails>
           <div style={{ color: '#AE2A40' }}>

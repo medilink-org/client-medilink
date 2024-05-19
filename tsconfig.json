@@ -6,7 +6,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "Bundler",
-    "target": "es2015",
+    "target": "esnext",
     "strict": false,
     "allowJs": true,
     "isolatedModules": true,
@@ -21,7 +21,8 @@
     "outDir": "./build",
     "paths": {
       "*": ["./node_modules/*", "./src/types/*"]
-    }
+    },
+    "types": ["vite/client"]
   },
-  "include": ["./src/*", "./src/types/*", "**/*.d.ts", "./package.json"]
+  "include": ["src", "package.json"]
 }

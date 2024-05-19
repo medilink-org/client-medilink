@@ -5,11 +5,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "react-app",
-    "react-app/jest",
+    "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,19 +17,24 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react", "editorconfig", "prettier"],
-  "overrides": [
-    {
-      "files": ["**/*.ts?(x)", "**/*.js?(x)"]
-    }
-  ],
   "rules": {
     "react/prop-types": "off",
-    "react/jsx-key": [1, { "checkFragmentShorthand": true }],
+    "react/jsx-key": ["warn", { "checkFragmentShorthand": true }],
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": ["warn", { "bracketSameLine": true }],
-    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "indent": "off",
     "linebreak-style": 0,
     "quotes": ["warn", "single"],
-    "semi": ["warn", "always"]
+    "semi": ["warn", "always"],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }
