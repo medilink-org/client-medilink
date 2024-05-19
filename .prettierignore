@@ -1,10 +1,10 @@
 package-lock.json
 package.json
 README.md
-tsconfig.json
 babel.config.json
 .prettierrc.json
 .eslintrc.json
 .gitignore
 .eslintignore
 .prettierignore
+dist/
