@@ -1,0 +1,31 @@
+.calendar-container {
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.date-header h2 {
+  margin: 0;
+  color: #6c63ff;
+}
+
+.buttons-container button {
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.buttons-container button.active {
+  background-color: #6c63ff;
+  color: white;
+}
+
+.appointments-container {
+  margin-right: auto;
+}

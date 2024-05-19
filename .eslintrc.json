@@ -1,0 +1,35 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "react-app/jest",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "react", "editorconfig", "prettier"],
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)", "**/*.js?(x)"]
+    }
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-key": [1, { "checkFragmentShorthand": true }],
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": ["warn", { "bracketSameLine": true }],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "linebreak-style": 0,
+    "quotes": ["warn", "single"],
+    "semi": ["warn", "always"]
+  }
+}

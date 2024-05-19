@@ -1,0 +1,21 @@
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+/* The table styling was taken from below to allow for horizontal scrolling
+https://stackoverflow.com/questions/19794211/horizontal-scroll-on-overflow-of-table */
+table {
+  display: block;
+  max-width: fit-content;
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+th,
+td {
+  width: 100px;
+}
