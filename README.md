@@ -79,10 +79,10 @@ This will analyze your project and report any dependencies that are not being us
 
 ## Deployment
 
-TODO: how to deploy the project
+A deployed version of the frontend lives at [medilink-frontend](https://medilink-frontend.onrender.com/)
 
 ## Authors
 
-Aimen Abdulaziz, Caleb Ash, Sajjab Careem, Taye
+Aimen Abdulaziz, Caleb Ash, Sajjad Kareem, Tayeb Mohammedi
 
 ## Acknowledgments
