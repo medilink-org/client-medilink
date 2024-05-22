@@ -15,7 +15,7 @@ export default function Layout() {
 
   console.log(data);
   const topBarProps = {
-    logo: 'img/logo.png',
+    logo: '../../../public/img/medilink_logo.webp',
     left: null,
     children: null,
     right: null,
