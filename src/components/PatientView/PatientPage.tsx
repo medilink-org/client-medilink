@@ -29,7 +29,7 @@ export default function PatientPage() {
   };
 
   const topBarProps = {
-    logo: '../../../public/img/medilink_logo.webp',
+    logo: '/img/medilink_logo.webp',
     left: null,
     children: <CommandBar {...commandBarProps} />,
     right: null,
