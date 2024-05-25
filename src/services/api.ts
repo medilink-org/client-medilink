@@ -5,7 +5,7 @@ const tags = ['patient', 'practitioner', 'appointment']; // add if more tags nee
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://easy-emr-backend.onrender.com/', // swap to local as needed
+    baseUrl: 'https://medi-link-api.onrender.com/', // swap to local as needed
     // baseUrl: 'http://localhost:3001/',
     prepareHeaders: (headers) => {
       headers.set('content-type', 'application/json');
