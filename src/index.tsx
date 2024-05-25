@@ -6,6 +6,7 @@ import { store } from './app/store';
 import Layout from './components/Layout/Layout';
 import Login from './components/Login/Login';
 import PatientPage from './components/PatientView/PatientPage';
+import DoctorAvailabilityPage from './components/DoctorAvailabilityPage';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +18,10 @@ root.render(
           <Route path="/" element={<Login />} />
           <Route path="/home/" element={<Layout />} />
           <Route path="/patient" element={<PatientPage />} />
+          <Route
+            path="/availability/:doctorId"
+            element={<DoctorAvailabilityPage />}
+          />
         </Routes>
       </BrowserRouter>
     </Provider>
