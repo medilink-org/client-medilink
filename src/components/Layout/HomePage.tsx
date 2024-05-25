@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Calendar from '../Calendar/Calendar';
 import CalendarBox from '../Calendar/CalendarBox';
 import SummaryBox from './SummaryBox';
+import { Link } from 'react-router-dom';
 
 interface props {
   practitioner: Practitioner;
@@ -39,7 +40,6 @@ export default function HomePage({ practitioner }: props) {
     }
   );
 
-  // create an array of appointments for today sorted by start time
   const todaysAppointments = practitioner.appointments
     .filter((appointment) => {
       return (
@@ -50,7 +50,6 @@ export default function HomePage({ practitioner }: props) {
     })
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  // for summary box
   const remainingAppointments = todaysAppointments.filter((appointment) => {
     return new Date(appointment.date).getTime() >= now.getTime();
   });
@@ -92,6 +91,9 @@ export default function HomePage({ practitioner }: props) {
             practitioner={practitioner}
             appointment={nextAppointment}
           />
+          <Link to={`/availability/${practitioner._id}`}>
+            <button>Set Availability</button>
+          </Link>{' '}
         </LeftSide>
         <RightSide>
           <Calendar
