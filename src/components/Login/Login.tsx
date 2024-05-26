@@ -7,16 +7,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import { useLazyGetPractitionerOnLoginQuery } from '../../services/api';
-
-// attribution: https://github.com/mui/material-ui/tree/v5.14.16/docs/data/material/getting-started/templates/sign-in
-// the repo above was used for this page's layout and as a demo of Material UI
+import {
+  useLazyGetPractitionerOnLoginQuery,
+  useLazyGetReceptionistOnLoginQuery
+} from '../../services/api';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
-  const [trigger] = useLazyGetPractitionerOnLoginQuery();
+  const [triggerPractitioner] = useLazyGetPractitionerOnLoginQuery();
+  const [triggerReceptionist] = useLazyGetReceptionistOnLoginQuery();
 
   // called when login button clicked
   const handleLoginAttempt = (event) => {
@@ -29,7 +30,7 @@ export default function Login() {
       return;
     }
 
-    trigger({
+    triggerPractitioner({
       username: username.toString(),
       password: password.toString()
     })
@@ -39,7 +40,18 @@ export default function Login() {
       })
       .catch((err) => {
         console.error(err);
-        alert('Invalid login or login server error');
+        triggerReceptionist({
+          username: username.toString(),
+          password: password.toString()
+        })
+          .unwrap()
+          .then((result) => {
+            navigate('/receptionist-home', { state: { receptionist: result } });
+          })
+          .catch((err) => {
+            console.error(err);
+            alert('Invalid login or login server error');
+          });
       });
   };
 
