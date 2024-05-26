@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import PatientPage from './components/PatientView/PatientPage';
 import DoctorAvailabilityPage from './components/DoctorAvailabilityPage';
 import './index.css';
+import ReceptionistHome from './components/Layout/ReceptionistHome';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
             path="/availability/:doctorId"
             element={<DoctorAvailabilityPage />}
           />
+          <Route path="/receptionist-home" element={<ReceptionistHome />} />
         </Routes>
       </BrowserRouter>
     </Provider>
