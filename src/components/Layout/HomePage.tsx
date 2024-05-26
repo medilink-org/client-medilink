@@ -5,6 +5,7 @@ import Calendar from '../Calendar/Calendar';
 import CalendarBox from '../Calendar/CalendarBox';
 import SummaryBox from './SummaryBox';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 interface props {
   practitioner: Practitioner;
@@ -92,8 +93,17 @@ export default function HomePage({ practitioner }: props) {
             appointment={nextAppointment}
           />
           <Link to={`/availability/${practitioner._id}`}>
-            <button>Set Availability</button>
-          </Link>{' '}
+            <Button
+              style={{
+                border: '1px solid grey',
+                backgroundColor: '#4D6096',
+                color: 'white'
+              }}
+              variant="contained"
+              color="primary">
+              Set Availability
+            </Button>
+          </Link>
         </LeftSide>
         <RightSide>
           <Calendar

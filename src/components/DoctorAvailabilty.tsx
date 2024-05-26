@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ScheduleSelector from 'react-schedule-selector';
 import axios from 'axios';
+import { Button, Container, Typography, Box } from '@mui/material';
 
 const DoctorAvailability = ({ doctorId }) => {
   const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
+    // Fetch existing availability
     const fetchAvailability = async () => {
       try {
         const response = await axios.get(
@@ -35,7 +37,7 @@ const DoctorAvailability = ({ doctorId }) => {
               const daysToAdd = (dayIndex - currentDayIndex + 7) % 7;
               date.setDate(date.getDate() + daysToAdd);
 
-              return new Date(date);
+              return new Date(date); // Ensure it's a new Date object for ScheduleSelector
             });
           });
           setSchedule(availability);
@@ -82,7 +84,7 @@ const DoctorAvailability = ({ doctorId }) => {
     axios
       .delete(`/api/practitioner/availability/${doctorId}`)
       .then(() => {
-        setSchedule([]);
+        setSchedule([]); // Clear the schedule state
         console.log('Availability deleted');
       })
       .catch((error) => {
@@ -91,8 +93,12 @@ const DoctorAvailability = ({ doctorId }) => {
   };
 
   return (
-    <div>
-      <h2>Select Your Availability</h2>
+    <Container>
+      <Box textAlign="center" mt={4} mb={2}>
+        <Typography variant="h4" component="h2">
+          Select Your Availability
+        </Typography>
+      </Box>
       <ScheduleSelector
         selection={schedule}
         numDays={7}
@@ -104,9 +110,24 @@ const DoctorAvailability = ({ doctorId }) => {
         onChange={handleChange}
         key={schedule.length}
       />
-      <button onClick={handleSave}>Save Availability</button>
-      <button onClick={handleDelete}>Delete All Availability</button>
-    </div>
+      <div style={{ marginTop: '20px' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSave}
+          style={{
+            border: '1px solid grey',
+            backgroundColor: '#4D6096',
+            color: 'white',
+            marginRight: '10px'
+          }}>
+          Save Availability
+        </Button>
+        <Button variant="outlined" color="secondary" onClick={handleDelete}>
+          Delete All Availability
+        </Button>
+      </div>
+    </Container>
   );
 };
 
