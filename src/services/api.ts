@@ -5,8 +5,8 @@ const tags = ['patient', 'practitioner', 'appointment']; // add if more tags nee
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://easy-emr-backend.onrender.com/', // swap to local as needed
-    // baseUrl: 'http://localhost:3001/',
+    // baseUrl: 'https://easy-emr-backend.onrender.com/', // swap to local as needed
+    baseUrl: 'http://localhost:3001/',
     prepareHeaders: (headers) => {
       headers.set('content-type', 'application/json');
       return headers;
@@ -91,6 +91,13 @@ export const api = createApi({
       }),
       providesTags: ['practitioner']
     }),
+    getReceptionistOnLogin: build.query({
+      query: ({ username, password }) => ({
+        url: `receptionist/login/${username}/${password}`,
+        method: 'GET'
+      }),
+      providesTags: ['receptionist']
+    }),
 
     // appointments
     getAppointment: build.query<Appointment, string>({
@@ -124,6 +131,7 @@ export const {
   useDeletePatientMutation,
   useGetPractitionerOnLoginQuery,
   useLazyGetPractitionerOnLoginQuery,
+  useLazyGetReceptionistOnLoginQuery,
   useGetPractitionerByUsernameQuery,
   useGetPractitionerQuery,
   useGetAppointmentQuery,
