@@ -97,7 +97,9 @@ export default function HomePage({ practitioner }: props) {
               style={{
                 border: '1px solid grey',
                 backgroundColor: '#4D6096',
-                color: 'white'
+                color: 'white',
+                marginTop: '10px',
+                marginLeft: '20px'
               }}
               variant="contained"
               color="primary">
