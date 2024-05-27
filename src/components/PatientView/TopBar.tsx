@@ -47,13 +47,15 @@ const TopBar = ({
         <Left>
           <LogoAndBrand>
             {showLogo && (
-              <Logo to="/home" state={{ practitioner: practitioner }}>
+              <Logo
+                to="/practitioner-home"
+                state={{ practitioner: practitioner }}>
                 <LogoImage src={logo} />
               </Logo>
             )}
             {showText && (
               <Brand to="/home" state={{ practitioner: practitioner }}>
-                EasyEMR
+                MediLink
               </Brand>
             )}
           </LogoAndBrand>
