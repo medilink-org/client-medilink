@@ -9,6 +9,7 @@ import PatientPage from './components/PatientView/PatientPage';
 import DoctorAvailabilityPage from './components/DoctorAvailabilityPage';
 import './index.css';
 import ReceptionistHome from './components/Layout/ReceptionistHome';
+import AdminHome from './components/Layout/AdminHome';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,13 +18,14 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home/" element={<Layout />} />
+          <Route path="/practitioner-home" element={<Layout />} />
           <Route path="/patient" element={<PatientPage />} />
           <Route
             path="/availability/:doctorId"
             element={<DoctorAvailabilityPage />}
           />
           <Route path="/receptionist-home" element={<ReceptionistHome />} />
+          <Route path="/admin-home" element={<AdminHome />} />
         </Routes>
       </BrowserRouter>
     </Provider>
