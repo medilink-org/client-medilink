@@ -13,7 +13,7 @@ const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   // called when login button clicked
   const handleLoginAttempt = async (event) => {
@@ -91,8 +91,9 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}>
-              Sign In
+              sx={{ mt: 3, mb: 2 }}
+              disabled={isLoading}>
+              {isLoading ? 'Logging in...' : 'Sign In'}
             </Button>
           </Box>
         </Box>
