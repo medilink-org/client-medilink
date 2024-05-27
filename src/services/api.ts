@@ -2,11 +2,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const tags = ['patient', 'practitioner', 'appointment']; // add if more tags needed
 
+const devUrl = import.meta.env.VITE_API_DEV_URL;
+const prodUrl = import.meta.env.VITE_API_PROD_URL;
+const buildEnv = import.meta.env.VITE_BUILD_ENV;
+
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://medi-link-api.onrender.com/', // swap to local as needed
-    // baseUrl: 'http://localhost:3001/',
+    baseUrl: buildEnv === 'prod' ? prodUrl : devUrl,
     prepareHeaders: (headers) => {
       headers.set('content-type', 'application/json');
       return headers;
