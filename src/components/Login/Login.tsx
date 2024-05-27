@@ -7,20 +7,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import {
-  useLazyGetPractitionerOnLoginQuery,
-  useLazyGetReceptionistOnLoginQuery
-} from '../../services/api';
+import { useLoginMutation } from '../../services/api';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
-  const [triggerPractitioner] = useLazyGetPractitionerOnLoginQuery();
-  const [triggerReceptionist] = useLazyGetReceptionistOnLoginQuery();
+  const [login] = useLoginMutation();
 
   // called when login button clicked
-  const handleLoginAttempt = (event) => {
+  const handleLoginAttempt = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const username = data.get('username');
@@ -30,29 +26,22 @@ export default function Login() {
       return;
     }
 
-    triggerPractitioner({
-      username: username.toString(),
-      password: password.toString()
-    })
-      .unwrap()
-      .then((result) => {
-        navigate('/home', { state: { practitioner: result } });
-      })
-      .catch((err) => {
-        console.error(err);
-        triggerReceptionist({
-          username: username.toString(),
-          password: password.toString()
-        })
-          .unwrap()
-          .then((result) => {
-            navigate('/receptionist-home', { state: { receptionist: result } });
-          })
-          .catch((err) => {
-            console.error(err);
-            alert('Invalid login or login server error');
-          });
-      });
+    try {
+      const user = await login({ username, password }).unwrap();
+      console.log('Logged in user:', user);
+
+      // Redirect based on user role
+      if (user.role === 'admin') {
+        navigate('/admin-home');
+      } else if (user.role === 'receptionist') {
+        navigate('/receptionist-home', { state: { receptionist: user } });
+      } else if (user.role === 'practitioner') {
+        navigate('/practitioner-home', { state: { practitioner: user } });
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Invalid login or login server error');
+    }
   };
 
   return (
