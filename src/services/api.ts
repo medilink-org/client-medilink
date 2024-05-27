@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const tags = ['patient', 'practitioner', 'appointment']; // add if more tags needed
+const tags = [
+  'patient',
+  'practitioner',
+  'appointment',
+  'receptionist',
+  'admin'
+];
 
 const devUrl = import.meta.env.VITE_API_DEV_URL;
 const prodUrl = import.meta.env.VITE_API_PROD_URL;
@@ -17,6 +23,15 @@ export const api = createApi({
   }),
   tagTypes: tags,
   endpoints: (build) => ({
+    // Authentication endpoint
+    login: build.mutation({
+      query: ({ username, password }) => ({
+        url: 'account/login',
+        method: 'POST',
+        body: { username, password }
+      })
+    }),
+
     getAllPatients: build.query<Patient[], void>({
       query: () => ({
         url: 'patient/all',
@@ -84,24 +99,6 @@ export const api = createApi({
       providesTags: ['practitioner', 'patient', 'appointment'] // in an ideal world just one, but this is a quick fix
     }),
 
-    getPractitionerOnLogin: build.query<
-      Practitioner,
-      { username: string; password: string }
-    >({
-      query: ({ username, password }) => ({
-        url: `practitioner/login/${username}/${password}`,
-        method: 'GET'
-      }),
-      providesTags: ['practitioner']
-    }),
-    getReceptionistOnLogin: build.query({
-      query: ({ username, password }) => ({
-        url: `receptionist/login/${username}/${password}`,
-        method: 'GET'
-      }),
-      providesTags: ['receptionist']
-    }),
-
     // appointments
     getAppointment: build.query<Appointment, string>({
       query: (_id) => ({
@@ -126,15 +123,13 @@ export const api = createApi({
 
 // hooks for use in components, call the endpoints above. See RTK Query docs for more info
 export const {
+  useLoginMutation,
   useGetAllPatientsQuery,
   useGetPatientQuery,
   useGetPatientByNameQuery,
   usePutPatientMutation,
   usePostPatientMutation,
   useDeletePatientMutation,
-  useGetPractitionerOnLoginQuery,
-  useLazyGetPractitionerOnLoginQuery,
-  useLazyGetReceptionistOnLoginQuery,
   useGetPractitionerByUsernameQuery,
   useGetPractitionerQuery,
   useGetAppointmentQuery,

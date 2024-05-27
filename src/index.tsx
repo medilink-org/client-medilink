@@ -9,6 +9,7 @@ import PatientPage from './components/PatientView/PatientPage';
 import DoctorAvailabilityPage from './components/DoctorAvailabilityPage';
 import './index.css';
 import ReceptionistHome from './components/Layout/ReceptionistHome';
+import AdminHome from './components/Layout/AdminHome';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,13 +18,31 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home/" element={<Layout />} />
+          <Route path="/practitioner-home" element={<Layout />} />
           <Route path="/patient" element={<PatientPage />} />
           <Route
             path="/availability/:doctorId"
             element={<DoctorAvailabilityPage />}
           />
           <Route path="/receptionist-home" element={<ReceptionistHome />} />
+          <Route path="/admin-home" element={<AdminHome />} />
+          <Route
+            path="*"
+            element={
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100vh',
+                  fontSize: '2em',
+                  color: '#333',
+                  backgroundColor: '#f5f5f5'
+                }}>
+                404 Page not found
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </Provider>
