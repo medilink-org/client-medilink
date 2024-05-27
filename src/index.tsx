@@ -26,6 +26,23 @@ root.render(
           />
           <Route path="/receptionist-home" element={<ReceptionistHome />} />
           <Route path="/admin-home" element={<AdminHome />} />
+          <Route
+            path="*"
+            element={
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100vh',
+                  fontSize: '2em',
+                  color: '#333',
+                  backgroundColor: '#f5f5f5'
+                }}>
+                404 Page not found
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </Provider>
