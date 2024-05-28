@@ -1,0 +1,61 @@
+.app-container {
+    padding: 24px;
+    background: #f0f2f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-table .ant-table {
+    background: #ffffff;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    padding: 20px;
+
+    @media screen and (min-width: 2224px) {
+        font-size: 23px;
+    }
+
+    @media screen and (min-width: 2848px) {
+        font-size: 26px;
+    }
+}
+
+.custom-table .ant-table-cell {
+    border: none !important;
+}
+
+.custom-table .ant-pagination {
+    margin-top: 16px;
+}
+
+.ant-table-thead>tr>th {
+    background-color: #fafafa;
+    font-weight: bold;
+}
+
+.ant-table-tbody>tr:hover>td {
+    background: #e6f7ff !important;
+}
+
+.dropdown-container {
+    position: absolute;
+    transform: translateY(-180%);
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
