@@ -13,7 +13,8 @@ export default function Layout() {
   const { data, error, isLoading, isFetching } =
     useGetPractitionerByUsernameQuery(location.state.practitioner.username);
 
-  console.log(data);
+  console.log('Practitioner data loaded in Layout:', data);
+
   const topBarProps = {
     logo: '/img/medilink_logo.webp',
     left: null,
@@ -44,8 +45,7 @@ export default function Layout() {
       </Box>
     );
   }
-  // attribution: https://github.com/mui/material-ui/blob/v5.14.16/docs/data/material/getting-started/templates/dashboard/Dashboard.js
-  // the Material UI "Dashboard" example was used below for the header
+
   return (
     <>
       <ThemeProvider theme={defaultTheme}>

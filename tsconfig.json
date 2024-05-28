@@ -17,12 +17,18 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
+    // "baseUrl": "./src",
     "outDir": "./build",
+    // "paths": {
+    //   "*": ["./node_modules/*", "./src/types/*"]
+    // },
+    "types": ["vite/client"],
+    "baseUrl": ".",
     "paths": {
-      "*": ["./node_modules/*", "./src/types/*"]
-    },
-    "types": ["vite/client"]
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": ["src", "package.json"]
 }
