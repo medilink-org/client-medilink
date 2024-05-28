@@ -141,8 +141,7 @@ export const api = createApi({
         body: { _id }
       }),
       invalidatesTags: ['practitioner', 'receptionist', 'admin']
-    })
-
+    }),
     getAvailablePractitioners: build.query<Practitioner[], void>({
       query: () => 'practitioner/available'
     }),
@@ -178,7 +177,7 @@ export const {
   usePutAppointmentMutation,
   useGetAvailablePractitionersQuery,
   useGetPractitionerAvailabilityQuery,
-  useAssignPatientToPractitionerMutation
+  useAssignPatientToPractitionerMutation,
   useGetAllUsersQuery,
   useCreateUserMutation,
   useDeleteUserMutation
