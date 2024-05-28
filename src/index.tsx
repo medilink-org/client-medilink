@@ -35,7 +35,7 @@ root.render(
           <Route path="/assign-patient" element={<AssignPatient />} />
           <Route path="/admin-home" element={<AdminHome />} />
           <Route path="/users" element={<UserPage />} />
-          <Route
+          {/* <Route
             path="*"
             element={
               <div
@@ -51,7 +51,7 @@ root.render(
                 404 Page not found
               </div>
             }
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </Provider>
