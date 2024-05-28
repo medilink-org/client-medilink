@@ -42,7 +42,6 @@ const TopBar = ({
   showText = false,
   path
 }) => {
-  console.log(path);
   return (
     <>
       <StyledTopBar style={style}>
