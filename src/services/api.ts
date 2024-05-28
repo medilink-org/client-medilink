@@ -117,6 +117,32 @@ export const api = createApi({
       invalidatesTags: ['appointment', 'patient', 'practitioner']
     }),
 
+    getAllUsers: build.query<Practitioner, string>({
+      query: () => ({
+        url: 'account/allUsers',
+        method: 'GET'
+      }),
+      providesTags: ['practitioner', 'receptionist', 'admin']
+    }),
+
+    createUser: build.mutation({
+      query: ({ username, password, role, name, userId, initials }) => ({
+        url: 'account/register',
+        method: 'POST',
+        body: { username, password, role, name, userId, initials }
+      }),
+      invalidatesTags: ['admin']
+    }),
+
+    deleteUser: build.mutation<void, { _id: string }>({
+      query: ({ _id }) => ({
+        url: 'account/deleteUser',
+        method: 'DELETE',
+        body: { _id }
+      }),
+      invalidatesTags: ['practitioner', 'receptionist', 'admin']
+    })
+
     getAvailablePractitioners: build.query<Practitioner[], void>({
       query: () => 'practitioner/available'
     }),
@@ -153,4 +179,7 @@ export const {
   useGetAvailablePractitionersQuery,
   useGetPractitionerAvailabilityQuery,
   useAssignPatientToPractitionerMutation
+  useGetAllUsersQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation
 } = api;

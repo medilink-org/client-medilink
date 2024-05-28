@@ -13,8 +13,10 @@ import ViewPatients from './components/Receptionist/ViewPatients';
 import PatientDetails from './components/Receptionist/PatientDetails';
 import AssignPatient from './components/Receptionist/AssignPatient';
 import AdminHome from './components/Layout/AdminHome';
+import UserPage from './components/Admin/ManageUsers/UsersPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -32,6 +34,7 @@ root.render(
           <Route path="/patient-details/:id" element={<PatientDetails />} />
           <Route path="/assign-patient" element={<AssignPatient />} />
           <Route path="/admin-home" element={<AdminHome />} />
+          <Route path="/users" element={<UserPage />} />
           <Route
             path="*"
             element={

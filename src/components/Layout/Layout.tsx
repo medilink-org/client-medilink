@@ -21,7 +21,8 @@ export default function Layout() {
     children: null,
     right: null,
     style: null,
-    practitioner: data
+    practitioner: data,
+    path: '/practitioner-home'
   };
 
   if (error) {
