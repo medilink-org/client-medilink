@@ -21,6 +21,7 @@ import {
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { useAssignPatientToPractitionerMutation } from '../../services/api';
 
 const AssignPatients: React.FC = () => {
   const [patients, setPatients] = useState([]);
@@ -30,6 +31,8 @@ const AssignPatients: React.FC = () => {
   const [selectedDoctor, setSelectedDoctor] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [assignPatientToPractitioner] =
+    useAssignPatientToPractitionerMutation();
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -71,6 +74,15 @@ const AssignPatients: React.FC = () => {
           appointment
         );
         console.log('Appointment response:', response.data);
+
+        // Add patient to practitioner
+        const p2pResponse = await assignPatientToPractitioner({
+          patientId: selectedPatient,
+          practitionerId: selectedDoctor
+        }).unwrap();
+
+        console.log('Assign patient response:', p2pResponse);
+
         setIsModalOpen(false);
         alert('Appointment assigned successfully!');
       } catch (error) {
