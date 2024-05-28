@@ -57,6 +57,7 @@ const UserForm = () => {
   const [loginInfo, setLoginInfo] = useState('');
   const [copyTooltip, setCopyTooltip] = useState('Copy to clipboard');
   const [createUser] = useCreateUserMutation();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const username = form.getFieldValue('username') || '';
@@ -65,6 +66,7 @@ const UserForm = () => {
   }, [form, generatedPassword]);
 
   const onFinish = async (values) => {
+    setIsLoading(true);
     try {
       const userId = '6653b2772c6d035c9cf265ab';
       values.userId = userId;
@@ -93,6 +95,8 @@ const UserForm = () => {
         icon: <CloseCircleOutlined />,
         duration: 5
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -271,7 +275,11 @@ const UserForm = () => {
       </Form.Item>
 
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={isLoading}
+          disabled={isLoading}>
           Add User
         </Button>
       </Form.Item>
