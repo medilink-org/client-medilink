@@ -34,7 +34,8 @@ export default function PatientPage() {
     children: <CommandBar {...commandBarProps} />,
     right: null,
     style: null,
-    practitioner: practitioner
+    practitioner: practitioner,
+    path: '/practitioner-home'
   };
 
   const sortedAppointments = activePatient.appointments.sort((a, b) => {
