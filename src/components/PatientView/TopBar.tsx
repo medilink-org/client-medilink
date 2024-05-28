@@ -39,22 +39,22 @@ const TopBar = ({
   style,
   practitioner,
   showLogo = true,
-  showText = false
+  showText = false,
+  path
 }) => {
+  console.log(path);
   return (
     <>
       <StyledTopBar style={style}>
         <Left>
           <LogoAndBrand>
             {showLogo && (
-              <Logo
-                to="/practitioner-home"
-                state={{ practitioner: practitioner }}>
+              <Logo to={path} state={{ practitioner: practitioner }}>
                 <LogoImage src={logo} />
               </Logo>
             )}
             {showText && (
-              <Brand to="/home" state={{ practitioner: practitioner }}>
+              <Brand to={path} state={{ practitioner: practitioner }}>
                 MediLink
               </Brand>
             )}

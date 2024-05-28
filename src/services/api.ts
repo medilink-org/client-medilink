@@ -115,6 +115,32 @@ export const api = createApi({
         body: delta
       }),
       invalidatesTags: ['appointment', 'patient', 'practitioner']
+    }),
+
+    getAllUsers: build.query<Practitioner, string>({
+      query: () => ({
+        url: 'account/allUsers',
+        method: 'GET'
+      }),
+      providesTags: ['practitioner', 'receptionist', 'admin']
+    }),
+
+    createUser: build.mutation({
+      query: ({ username, password, role, name, userId, initials }) => ({
+        url: 'account/register',
+        method: 'POST',
+        body: { username, password, role, name, userId, initials }
+      }),
+      invalidatesTags: ['admin']
+    }),
+
+    deleteUser: build.mutation<void, { _id: string }>({
+      query: ({ _id }) => ({
+        url: 'account/deleteUser',
+        method: 'DELETE',
+        body: { _id }
+      }),
+      invalidatesTags: ['practitioner', 'receptionist', 'admin']
     })
 
     // add more endpoints as needed
@@ -133,5 +159,8 @@ export const {
   useGetPractitionerByUsernameQuery,
   useGetPractitionerQuery,
   useGetAppointmentQuery,
-  usePutAppointmentMutation
+  usePutAppointmentMutation,
+  useGetAllUsersQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation
 } = api;

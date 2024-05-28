@@ -10,8 +10,10 @@ import DoctorAvailabilityPage from './components/DoctorAvailabilityPage';
 import './index.css';
 import ReceptionistHome from './components/Layout/ReceptionistHome';
 import AdminHome from './components/Layout/AdminHome';
+import UserPage from './components/Admin/ManageUsers/UsersPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -26,6 +28,7 @@ root.render(
           />
           <Route path="/receptionist-home" element={<ReceptionistHome />} />
           <Route path="/admin-home" element={<AdminHome />} />
+          <Route path="/users" element={<UserPage />} />
           <Route
             path="*"
             element={
