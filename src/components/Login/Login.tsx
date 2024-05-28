@@ -28,7 +28,6 @@ export default function Login() {
 
     try {
       const user = await login({ username, password }).unwrap();
-      console.log('Logged in user:', user);
 
       // Redirect based on user role
       if (user.role === 'admin') {

@@ -2,36 +2,54 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 interface Props {
-  patient: Patient;
-  practitioner: Practitioner;
+  patient: Patient | null;
+  practitioner: Practitioner | null;
   appointment: Appointment;
 }
 
 const AppointmentCard = ({ patient, practitioner, appointment }: Props) => {
+  console.log('AppointmentCard props:', { patient, practitioner, appointment });
+
+  if (!patient) {
+    console.warn('Patient data is missing for appointment:', appointment);
+    return (
+      <AppointmentCardWrapper
+        barColor="gray"
+        dataTooltip="No patient data available">
+        <StyledAppointmentCard to="#">
+          <ApppointmentName>Unknown Patient</ApppointmentName>
+          <AppointmentDetails>
+            <div style={{ color: '#AE2A40' }}>
+              <Label>Reason: </Label>{' '}
+              {appointment.reason || 'No reason provided'}
+            </div>
+            <div style={{ color: '#AE2A40' }}>
+              <Label>Appointment Time: </Label>
+              {new Date(appointment.date).toLocaleTimeString()}
+            </div>
+          </AppointmentDetails>
+        </StyledAppointmentCard>
+      </AppointmentCardWrapper>
+    );
+  }
+
+  if (!practitioner) {
+    console.warn('Practitioner data is missing for appointment:', appointment);
+    return null;
+  }
+
   const reason = appointment.reason;
-
-  // Parsing the appointment.date string to a Date object
   const appointmentDate = new Date(appointment.date);
-
-  // // Adjusting the appointment time by 6 hours because gpt4 gave times in UTC
-  // appointmentDate.setHours(appointmentDate.getHours());
-
-  // Extracting hours and converting to 12-hour format
   let hours = appointmentDate.getHours();
   const amPm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-
-  // Formatting hours and minutes to ensure two-digit format
+  hours = hours ? hours : 12;
   const minutes = appointmentDate.getMinutes().toString().padStart(2, '0');
-
   const now = new Date().getTime();
 
-  // determine color of sidebar based on appointment status
   let color = '';
   let tooltip = '';
   if (
-    // if appointment is actively happening
     (appointmentDate.getTime() <= now &&
       appointmentDate.getTime() + 45 * 60000 >= now) ||
     appointment.status === 'in-progress'
@@ -42,32 +60,21 @@ const AppointmentCard = ({ patient, practitioner, appointment }: Props) => {
     color = 'gray';
     tooltip = 'Gray bar- Appointment was cancelled';
   } else if (
-    // if appointment is in the distant past (longer than 2 days) and has no synopsis
     appointmentDate.getTime() < now - 2 * 86400000 &&
-    (appointment.synopsis === '' ||
-      appointment.synopsis === null ||
-      appointment.synopsis === undefined)
+    (!appointment.synopsis || appointment.synopsis === '')
   ) {
     color = '#D94425';
     tooltip = 'Red bar- No synopsis and happened more than 2 days ago';
   } else if (
     appointmentDate.getTime() < now &&
-    (appointment.synopsis === '' ||
-      appointment.synopsis === null ||
-      appointment.synopsis === undefined)
+    (!appointment.synopsis || appointment.synopsis === '')
   ) {
-    // if appointment in distant past and has no synopsis
     color = '#CDC62E';
     tooltip = 'Yellow bar- No synopsis but happened today or yesterday';
-  } else if (
-    // if appointment is in the past and has a synopsis
-    appointmentDate.getTime() < now &&
-    appointment.synopsis !== ''
-  ) {
+  } else if (appointmentDate.getTime() < now && appointment.synopsis !== '') {
     color = '#48B328';
     tooltip = 'Green bar- Already happened and has a synopsis';
   } else {
-    // if appointment is in the future (default)
     color = '#288EB3';
     tooltip = 'Blue bar- Future appointment';
   }

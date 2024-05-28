@@ -20,7 +20,12 @@ export default function HomePage({ practitioner }: props) {
   const [calendarView, setCalendarView] = useState(1);
   const now = new Date();
 
-  const patients = practitioner.patients;
+  const patients = practitioner.patients.map((patient) => ({
+    ...patient,
+    _id: patient._id.toString()
+  }));
+
+  console.log('Patients in HomePage:', patients);
 
   const selectedDateAppointments = practitioner.appointments.filter(
     (appointment) => {
@@ -61,7 +66,7 @@ export default function HomePage({ practitioner }: props) {
 
   const nextPatient =
     remainingAppointments.length > 0
-      ? practitioner.patients.find((patient) => {
+      ? patients.find((patient) => {
           return patient._id === (nextAppointment.patient as unknown as string);
         })
       : null;

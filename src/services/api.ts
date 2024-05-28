@@ -143,7 +143,23 @@ export const api = createApi({
       invalidatesTags: ['practitioner', 'receptionist', 'admin']
     })
 
-    // add more endpoints as needed
+    getAvailablePractitioners: build.query<Practitioner[], void>({
+      query: () => 'practitioner/available'
+    }),
+    getPractitionerAvailability: build.query<any, string>({
+      query: (id) => `practitioner/availability/${id}`
+    }),
+    assignPatientToPractitioner: build.mutation<
+      void,
+      { patientId: string; practitionerId: string }
+    >({
+      query: ({ patientId, practitionerId }) => ({
+        url: `/practitioner/id/${practitionerId}/addPatient/${patientId}`,
+        method: 'PUT',
+        body: { patientId }
+      }),
+      invalidatesTags: ['Practitioner']
+    })
   })
 });
 
@@ -160,6 +176,9 @@ export const {
   useGetPractitionerQuery,
   useGetAppointmentQuery,
   usePutAppointmentMutation,
+  useGetAvailablePractitionersQuery,
+  useGetPractitionerAvailabilityQuery,
+  useAssignPatientToPractitionerMutation
   useGetAllUsersQuery,
   useCreateUserMutation,
   useDeleteUserMutation
