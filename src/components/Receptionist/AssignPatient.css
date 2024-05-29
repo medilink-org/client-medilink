@@ -1,0 +1,19 @@
+.assign-patients-container {
+  padding: 24px;
+}
+
+.assign-patients-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.available-doctors {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.doctor-availability {
+  margin-top: 16px;
+}
