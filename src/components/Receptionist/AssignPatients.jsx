@@ -20,7 +20,7 @@ import {
 import { SearchOutlined, UserAddOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import dayjs from 'dayjs';
-import './style/AssignPatient.css';
+import './style/AssignPatients.css';
 
 const { Option } = Select;
 const { Title } = Typography;
