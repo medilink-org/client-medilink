@@ -2,6 +2,7 @@ import React from 'react';
 import QRCode from 'qrcode.react';
 import { Typography, Button, Space } from 'antd';
 import './style/GenerateQRCode.css';
+import { Link } from 'react-router-dom';
 
 const { Title, Paragraph } = Typography;
 
@@ -18,9 +19,9 @@ const GenerateQRCode = () => {
       </Paragraph>
       <Space direction="vertical" size="large">
         <QRCode value={url} size={256} />
-        <Button type="primary" href={url} target="_blank">
-          Open Check-in Form
-        </Button>
+        <Link to={url}>
+          <Button type="primary">Open Check-in Form</Button>
+        </Link>
       </Space>
     </div>
   );
