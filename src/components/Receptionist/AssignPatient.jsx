@@ -13,7 +13,6 @@ import {
   Tooltip,
   Row,
   Col,
-  Tag,
   Card,
   message
 } from 'antd';
@@ -31,6 +30,7 @@ const { Option } = Select;
 const { Title } = Typography;
 
 const AssignPatients = () => {
+  const [form] = Form.useForm();
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState(dayjs());
@@ -70,20 +70,21 @@ const AssignPatients = () => {
   };
 
   const handleAssign = async () => {
-    if (selectedPatient && selectedDoctor && selectedTime && date) {
-      const timeParts = selectedTime.split(':');
-      const combinedDateTime = dayjs(date)
-        .hour(parseInt(timeParts[0]))
-        .minute(parseInt(timeParts[1]))
-        .second(parseInt(timeParts[2]))
-        .format('YYYY-MM-DDTHH:mm:ss');
+    try {
+      const values = await form.validateFields();
+      if (selectedPatient && selectedDoctor && selectedTime && date) {
+        const timeParts = selectedTime.split(':');
+        const combinedDateTime = dayjs(date)
+          .hour(parseInt(timeParts[0]))
+          .minute(parseInt(timeParts[1]))
+          .second(parseInt(timeParts[2]))
+          .format('YYYY-MM-DDTHH:mm:ss');
+        const appointment = {
+          date: combinedDateTime,
+          status: 'scheduled',
+          reason: values.reason
+        };
 
-      const appointment = {
-        date: combinedDateTime,
-        status: 'scheduled'
-      };
-
-      try {
         await axios.post(
           `/api/appointment/toPatient/${selectedPatient}/toPractitioner/${selectedDoctor}`,
           appointment
@@ -96,12 +97,11 @@ const AssignPatients = () => {
 
         setIsModalOpen(false);
         message.success('Appointment assigned successfully!');
-      } catch (error) {
-        console.error('Error assigning appointment:', error);
-        message.error('Failed to assign appointment. Please try again.');
+      } else {
+        message.warning('Please select patient, doctor, time, and date.');
       }
-    } else {
-      message.warning('Please select patient, doctor, time, and date.');
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
     }
   };
 
@@ -302,7 +302,7 @@ const AssignPatients = () => {
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         onOk={handleAssign}>
-        <Form layout="vertical">
+        <Form layout="vertical" form={form}>
           <Form.Item label="Patient">
             <Input
               value={
@@ -319,6 +319,17 @@ const AssignPatients = () => {
           </Form.Item>
           <Form.Item label="Time">
             <Input value={selectedTime} readOnly />
+          </Form.Item>
+          <Form.Item
+            label="Reason for Visit"
+            name="reason"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the reason for the visit'
+              }
+            ]}>
+            <Input />
           </Form.Item>
         </Form>
       </Modal>
