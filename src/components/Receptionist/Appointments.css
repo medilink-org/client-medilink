@@ -15,6 +15,11 @@
     box-shadow: none !important;
 }
 
+.events {
+    list-style: none;
+    padding: 0;
+}
+
 .appointment-list-container {
     max-height: 400px;
     overflow-y: auto;
