@@ -39,10 +39,8 @@ const ReceptionistHome = () => {
           />
         </div>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" icon={<UserAddOutlined />}>
-            <Button type="link" onClick={showModal} style={{ color: 'white' }}>
-              Check In Patients
-            </Button>
+          <Menu.Item key="1" icon={<UserAddOutlined />} onClick={showModal}>
+            Check In Patients
           </Menu.Item>
           <Menu.Item key="2" icon={<UserSwitchOutlined />}>
             <Link to="/assign-patient" style={{ color: 'white' }}>
