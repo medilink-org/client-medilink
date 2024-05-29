@@ -63,11 +63,22 @@ const AssignPatients: React.FC = () => {
 
   const handleAssign = async () => {
     if (selectedPatient && selectedDoctor && selectedTime && date) {
+      const timeParts = selectedTime.split(':');
+      const combinedDateTime = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        parseInt(timeParts[0]),
+        parseInt(timeParts[1]),
+        parseInt(timeParts[2])
+      ).toLocaleString('en-US', { hour12: false });
+
       const appointment = {
-        date: date.toISOString(),
+        date: combinedDateTime,
         time: selectedTime,
         status: 'scheduled'
       };
+
       try {
         const response = await axios.post(
           `/api/appointment/toPatient/${selectedPatient}/toPractitioner/${selectedDoctor}`,
