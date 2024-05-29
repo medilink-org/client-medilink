@@ -6,7 +6,9 @@ import './GenerateQRCode.css';
 const { Title, Paragraph } = Typography;
 
 const GenerateQRCode = () => {
-  const url = 'http://localhost:5173/checkin';
+  const devUrl = 'http://localhost:5173/checkin';
+  const prodUrl = 'https://medi-link-api.onrender.com/checkin';
+  const url = import.meta.env.VITE_BUILD_ENV === 'dev' ? devUrl : prodUrl;
 
   return (
     <div className="qr-code-container">
