@@ -4,6 +4,7 @@ import {
   UserAddOutlined,
   UserSwitchOutlined,
   UserOutlined,
+  UsergroupAddOutlined,
   QrcodeOutlined
 } from '@ant-design/icons';
 import CheckInForm from './CheckInForm';
@@ -31,16 +32,12 @@ const ReceptionistHome = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible>
-        <div className="logo">
-          <img
-            src="/img/MediLink_Logo.png"
-            alt="Logo"
-            style={{ width: '100%' }}
-          />
-        </div>
+        <div className="logo" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" icon={<UserAddOutlined />} onClick={showModal}>
-            Check In Patients
+          <Menu.Item key="1" icon={<UserAddOutlined />}>
+            <Button type="link" onClick={showModal} style={{ color: 'white' }}>
+              Check In Patients
+            </Button>
           </Menu.Item>
           <Menu.Item key="2" icon={<UserSwitchOutlined />}>
             <Link to="/assign-patient" style={{ color: 'white' }}>
@@ -52,7 +49,12 @@ const ReceptionistHome = () => {
               View Patient List
             </Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<QrcodeOutlined />}>
+          <Menu.Item key="4" icon={<UsergroupAddOutlined />}>
+            <Link to="/doctor-page" style={{ color: 'white' }}>
+              Doctor page
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<QrcodeOutlined />}>
             <Link to="/generate-qrcode" style={{ color: 'white' }}>
               QR Code
             </Link>
