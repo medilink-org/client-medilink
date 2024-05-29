@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState, useRef } from 'react';
 import {
   Table,
   Button,
@@ -14,58 +13,46 @@ import {
   Row,
   Col,
   Card,
-  message
+  message,
+  Layout
 } from 'antd';
+import { SearchOutlined, UserAddOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
+import dayjs from 'dayjs';
 import {
-  SearchOutlined,
-  UserAddOutlined,
-  CalendarOutlined
-} from '@ant-design/icons';
-import {
+  useGetAllPatientsQuery,
+  useGetAvailablePractitionersQuery,
   useAssignPatientToPractitionerMutation,
   useDeletePatientMutation
 } from '../../services/api';
-import Highlighter from 'react-highlight-words';
-import dayjs from 'dayjs';
-import './style/AssignPatient.css';
 import { DeleteOutlined } from '@mui/icons-material';
+import './style/AssignPatient.css';
 
 const { Option } = Select;
 const { Title } = Typography;
+const { Header, Content } = Layout;
 
-const AssignPatients = () => {
+const AssignPatient = () => {
   const [form] = Form.useForm();
-  const [patients, setPatients] = useState([]);
-  const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState(dayjs());
   const [selectedPatient, setSelectedPatient] = useState('');
   const [selectedDoctor, setSelectedDoctor] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [assignPatientToPractitioner] =
-    useAssignPatientToPractitionerMutation();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+
+  const { data: patients = [], isLoading: isLoadingPatients } =
+    useGetAllPatientsQuery();
+  const { data: doctors = [], isLoading: isLoadingDoctors } =
+    useGetAvailablePractitionersQuery();
+  const [assignPatientToPractitioner] =
+    useAssignPatientToPractitionerMutation();
   const [deletePatient, { isLoading: isDeleting }] = useDeletePatientMutation();
 
-  useEffect(() => {
-    const fetchPatients = async () => {
-      const response = await axios.get('/api/patient/all');
-      setPatients(response.data);
-    };
-
-    const fetchDoctors = async () => {
-      const response = await axios.get('/api/practitioner/available');
-      setDoctors(response.data);
-    };
-
-    fetchPatients();
-    fetchDoctors();
-  }, []);
-
   const getDoctorAvailability = (doctor, selectedDate) => {
-    if (!selectedDate) return [];
+    if (!selectedDate || !doctor || !doctor.availability) return [];
     const dayOfWeek = selectedDate.format('dddd').toLowerCase();
 
     const availability = doctor.availability.find(
@@ -90,14 +77,10 @@ const AssignPatients = () => {
           reason: values.reason
         };
 
-        await axios.post(
-          `/api/appointment/toPatient/${selectedPatient}/toPractitioner/${selectedDoctor}`,
-          appointment
-        );
-
         await assignPatientToPractitioner({
           patientId: selectedPatient,
-          practitionerId: selectedDoctor
+          practitionerId: selectedDoctor,
+          ...appointment
         }).unwrap();
 
         setIsModalOpen(false);
@@ -127,7 +110,7 @@ const AssignPatients = () => {
       onOk: async () => {
         console.log('Delete patient:', patientId);
         await deletePatient({ _id: patientId });
-        setPatients(patients.filter((patient) => patient._id !== patientId));
+        // setPatients(patients.filter((patient) => patient._id !== patientId));
       }
     });
   };
@@ -189,7 +172,12 @@ const AssignPatients = () => {
       <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+      record[dataIndex]
+        ? record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        : false,
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
@@ -254,74 +242,89 @@ const AssignPatients = () => {
   ];
 
   return (
-    <div className="app-container">
-      <div className="header">
-        <Title level={2} style={{ margin: 0, color: '', padding: '20px 0' }}>
-          Assign Patients to Doctors
-        </Title>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <Button type="primary" icon={<CalendarOutlined />}>
-            View Appointments
-          </Button>
-        </div>
-      </div>
-      <Row gutter={16}>
-        <Col xs={24} sm={24} md={16}>
-          <Table
-            columns={columns}
-            dataSource={patients}
-            pagination={{
-              showSizeChanger: true,
-              pageSizeOptions: ['5', '10', '20', '50']
-            }}
-            rowKey="_id"
-            className="custom-table"
-          />
-        </Col>
-        <Col xs={24} sm={24} md={8}>
-          <Card title="Doctors Availability" bordered>
-            <Typography.Paragraph>
-              Select a date to see available doctors
-            </Typography.Paragraph>
-            <DatePicker
-              value={date}
-              onChange={(newDate) => setDate(newDate)}
-              style={{ width: '100%', marginBottom: 16 }}
-            />
-            <div className="available-doctors">
-              {doctors.map((doctor) => {
-                const availableTimes = getDoctorAvailability(doctor, date);
-                return (
-                  availableTimes.length > 0 && (
-                    <div key={doctor._id} className="doctor-availability">
-                      <Typography.Title level={5}>
-                        {doctor.name}
-                      </Typography.Title>
-                      <Select
-                        value={
-                          selectedDoctor === doctor._id ? selectedTime : ''
-                        }
-                        onChange={(value) => {
-                          setSelectedDoctor(doctor._id);
-                          setSelectedTime(value);
-                        }}
-                        placeholder="Select a time"
-                        style={{ width: '100%' }}>
-                        {availableTimes.map((time) => (
-                          <Option key={time} value={time}>
-                            {time}
-                          </Option>
-                        ))}
-                      </Select>
-                    </div>
-                  )
-                );
-              })}
-            </div>
-          </Card>
-        </Col>
-      </Row>
-
+    <Layout style={{ minHeight: '100vh' }}>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Title
+            level={2}
+            style={{
+              margin: 0,
+              color: '',
+              padding: '20px',
+              marginLeft: '220px'
+            }}>
+            Assign Patients to Doctors
+          </Title>
+        </Header>
+        <Content style={{ margin: '0 16px' }}>
+          <div
+            className="site-layout-background"
+            style={{ padding: 24, minHeight: 360 }}>
+            <Row gutter={16}>
+              <Col xs={24} sm={24} md={16}>
+                <Table
+                  columns={columns}
+                  dataSource={patients}
+                  pagination={{
+                    showSizeChanger: true,
+                    pageSizeOptions: ['5', '10', '20', '50']
+                  }}
+                  rowKey="_id"
+                  className="custom-table"
+                  loading={isLoadingPatients}
+                />
+              </Col>
+              <Col xs={24} sm={24} md={8}>
+                <Card title="Doctors Availability" bordered>
+                  <Typography.Paragraph>
+                    Select a date to see available doctors
+                  </Typography.Paragraph>
+                  <DatePicker
+                    value={date}
+                    onChange={(newDate) => setDate(newDate)}
+                    style={{ width: '100%', marginBottom: 16 }}
+                  />
+                  <div className="available-doctors">
+                    {doctors.map((doctor) => {
+                      const availableTimes = getDoctorAvailability(
+                        doctor,
+                        date
+                      );
+                      return (
+                        availableTimes.length > 0 && (
+                          <div key={doctor._id} className="doctor-availability">
+                            <Typography.Title level={5}>
+                              {doctor.name}
+                            </Typography.Title>
+                            <Select
+                              value={
+                                selectedDoctor === doctor._id
+                                  ? selectedTime
+                                  : ''
+                              }
+                              onChange={(value) => {
+                                setSelectedDoctor(doctor._id);
+                                setSelectedTime(value);
+                              }}
+                              placeholder="Select a time"
+                              style={{ width: '100%' }}>
+                              {availableTimes.map((time) => (
+                                <Option key={time} value={time}>
+                                  {time}
+                                </Option>
+                              ))}
+                            </Select>
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                </Card>
+              </Col>
+            </Row>
+          </div>
+        </Content>
+      </Layout>
       <Modal
         title="Assign Patient"
         open={isModalOpen}
@@ -358,8 +361,8 @@ const AssignPatients = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </Layout>
   );
 };
 
-export default AssignPatients;
+export default AssignPatient;
