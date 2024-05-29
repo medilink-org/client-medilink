@@ -9,6 +9,7 @@ import {
 import CheckInForm from './CheckInForm';
 import './style/ReceptionistHome.css';
 import Appointments from './Appointments';
+import { Link } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
 
@@ -62,12 +63,9 @@ const ReceptionistHome = () => {
             </Button>
           </Menu.Item>
           <Menu.Item key="4" icon={<QrcodeOutlined />}>
-            <Button
-              type="link"
-              href="/generate-qrcode"
-              style={{ color: 'white' }}>
+            <Link to="/generate-qrcode" style={{ color: 'white' }}>
               QR Code
-            </Button>
+            </Link>
           </Menu.Item>
         </Menu>
       </Sider>
