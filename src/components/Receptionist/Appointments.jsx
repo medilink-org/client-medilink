@@ -52,7 +52,7 @@ const dateCellRender = (value, appointments) => {
   );
 };
 
-const AppointmentViews = () => {
+const Appointments = () => {
   const { data: appointments, isLoading } = useGetAllAppointmentsQuery();
   const [selectedDate, setSelectedDate] = useState(dayjs());
   const [searchText, setSearchText] = useState('');
@@ -79,7 +79,7 @@ const AppointmentViews = () => {
       confirm,
       clearFilters
     }) => (
-      <div style={{ padding: 8 }}>
+      <div className="dropdown-container" style={{ padding: 8 }}>
         <Input
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
@@ -232,15 +232,23 @@ const AppointmentViews = () => {
           margin: 0,
           color: 'black',
           padding: '20px 0',
-          textAlign: 'center'
+          textAlign: 'center',
+          fontSize: 'calc(2em + 1vw)'
         }}>
         Appointments
       </Title>
-      <Alert
-        message={`You selected date: ${selectedDate.format('MMMM Do YYYY')}`}
-        type="info"
-        style={{ marginBottom: 20 }}
-      />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+        <Alert
+          message={`You selected date: ${selectedDate.format('MMMM Do YYYY')}`}
+          type="info"
+          style={{ marginBottom: 20, width: '50%', textAlign: 'center' }}
+        />
+      </div>
       <Calendar
         className="appointment-calendar"
         value={selectedDate}
@@ -263,4 +271,4 @@ const AppointmentViews = () => {
   );
 };
 
-export default AppointmentViews;
+export default Appointments;
