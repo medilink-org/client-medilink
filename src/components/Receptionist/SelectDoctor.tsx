@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import Box from '@mui/material/Box';
 import { CssBaseline } from '@mui/material';
 import TopBar from '../PatientView/TopBar';
-import './style/receptionist_style.css';
+import './style/reception_style.css';
 import { useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
