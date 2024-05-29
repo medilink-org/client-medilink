@@ -17,10 +17,11 @@ declare interface Patient {
   name: string;
   initials: string;
   age: number;
+  email: string;
   birthDate: Date;
   gender: string;
   measurements?: Measurement[];
-  appointments?: Appointment[];
+  appointments?: Appointment[] | Mongoose.Schema.Types.ObjectId[] | string[];
   notes: Note[];
   prescriptions: Prescription[];
   allergies: Allergy[];
