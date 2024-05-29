@@ -1,9 +1,9 @@
-table,
+/* table,
 th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
-}
+} */
 
 /* The table styling was taken from below to allow for horizontal scrolling
 https://stackoverflow.com/questions/19794211/horizontal-scroll-on-overflow-of-table */
