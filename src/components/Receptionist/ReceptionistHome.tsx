@@ -23,9 +23,6 @@ const ReceptionistHome = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <ReceptionistNav />
       <Layout className="site-layout">
-        <Header
-          className="site-layout-background"
-          style={{ padding: 0 }}></Header>
         <Content style={{ margin: '0 16px' }}>
           <div
             className="site-layout-background"
