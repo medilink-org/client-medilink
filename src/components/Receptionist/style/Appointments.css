@@ -1,0 +1,24 @@
+.appointment-container {
+    padding: 20px;
+    max-width: 100%;
+}
+
+/* .alert-calendar-container .ant-alert {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.alert-calendar-container .ant-picker-calendar {
+    width: 100%;
+} */
+
+.events {
+    list-style: none;
+    padding: 0;
+}
+
+.appointment-calendar th,
+.appointment-calendar td {
+    text-align: center;
+}

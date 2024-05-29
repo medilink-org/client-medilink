@@ -13,7 +13,7 @@ import {
 import { SearchOutlined, EyeOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axiosInstance from '../../axiosInstance';
-import './ViewPatients.css';
+import './style/ViewPatients.css';
 
 const { Title } = Typography;
 

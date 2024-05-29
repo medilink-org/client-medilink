@@ -39,7 +39,7 @@ root.render(
           <Route path="/users" element={<UserPage />} />
           <Route path="/checkin" element={<CheckInForm />} />
           <Route path="/generate-qrcode" element={<GenerateQRCode />} />
-          {/* <Route
+          <Route
             path="*"
             element={
               <div
@@ -55,7 +55,7 @@ root.render(
                 404 Page not found
               </div>
             }
-          /> */}
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

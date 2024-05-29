@@ -25,7 +25,7 @@ import {
 import { useAssignPatientToPractitionerMutation } from '../../services/api';
 import Highlighter from 'react-highlight-words';
 import dayjs from 'dayjs';
-import './AssignPatient.css';
+import './style/AssignPatient.css';
 
 const { Option } = Select;
 const { Title } = Typography;
