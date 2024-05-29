@@ -28,14 +28,6 @@ const ReceptionistHome = () => {
     setIsModalVisible(false);
   };
 
-  const handleViewPatients = () => {
-    window.location.href = '/view-patients';
-  };
-
-  const handleAssignPatient = () => {
-    window.location.href = '/assign-patient';
-  };
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible>
@@ -47,20 +39,14 @@ const ReceptionistHome = () => {
             </Button>
           </Menu.Item>
           <Menu.Item key="2" icon={<UserSwitchOutlined />}>
-            <Button
-              type="link"
-              onClick={handleAssignPatient}
-              style={{ color: 'white' }}>
+            <Link to="/assign-patient" style={{ color: 'white' }}>
               Assign to Doctor
-            </Button>
+            </Link>
           </Menu.Item>
           <Menu.Item key="3" icon={<UserOutlined />}>
-            <Button
-              type="link"
-              onClick={handleViewPatients}
-              style={{ color: 'white' }}>
+            <Link to="/view-patients" style={{ color: 'white' }}>
               View Patient List
-            </Button>
+            </Link>
           </Menu.Item>
           <Menu.Item key="4" icon={<QrcodeOutlined />}>
             <Link to="/generate-qrcode" style={{ color: 'white' }}>
