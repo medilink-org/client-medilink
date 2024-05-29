@@ -21,10 +21,14 @@ import {
   UserAddOutlined,
   CalendarOutlined
 } from '@ant-design/icons';
-import { useAssignPatientToPractitionerMutation } from '../../services/api';
+import {
+  useAssignPatientToPractitionerMutation,
+  useDeletePatientMutation
+} from '../../services/api';
 import Highlighter from 'react-highlight-words';
 import dayjs from 'dayjs';
 import './style/AssignPatient.css';
+import { DeleteOutlined } from '@mui/icons-material';
 
 const { Option } = Select;
 const { Title } = Typography;
@@ -43,6 +47,7 @@ const AssignPatients = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+  const [deletePatient, { isLoading: isDeleting }] = useDeletePatientMutation();
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -114,6 +119,17 @@ const AssignPatients = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText('');
+  };
+
+  const handleDelete = (patientId) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this appointment?',
+      onOk: async () => {
+        console.log('Delete patient:', patientId);
+        await deletePatient({ _id: patientId });
+        setPatients(patients.filter((patient) => patient._id !== patientId));
+      }
+    });
   };
 
   const getColumnSearchProps = (dataIndex, title) => ({
@@ -222,6 +238,15 @@ const AssignPatients = () => {
               }}>
               Assign
             </Button>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <Button
+              type="danger"
+              icon={<DeleteOutlined style={{ color: 'red' }} />}
+              onClick={() => handleDelete(record._id)}
+              disabled={isDeleting}
+              loading={isDeleting}
+            />
           </Tooltip>
         </Space>
       )
