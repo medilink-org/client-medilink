@@ -133,6 +133,14 @@ export const api = createApi({
       invalidatesTags: ['appointment', 'patient', 'practitioner']
     }),
 
+    deleteAppointment: build.mutation<void, { _id: string }>({
+      query: (_id) => ({
+        url: `appointment/${_id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['appointment']
+    }),
+
     getAllUsers: build.query<Practitioner, string>({
       query: () => ({
         url: 'account/allUsers',
@@ -196,6 +204,7 @@ export const {
   useGetAppointmentByDateQuery,
   useGetAppointmentQuery,
   usePutAppointmentMutation,
+  useDeleteAppointmentMutation,
   useGetAvailablePractitionersQuery,
   useGetPractitionerAvailabilityQuery,
   useAssignPatientToPractitionerMutation,
