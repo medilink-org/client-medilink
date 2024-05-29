@@ -14,6 +14,7 @@ import {
   usePutPatientMutation
 } from '../../services/api';
 import styled from 'styled-components';
+import emailPatient from '../../services/emailUtils';
 
 // added these options in case we want to utilize autocomplete/autosuggest
 const barOptions = [
@@ -267,12 +268,16 @@ export default function CommandBar({
         const content = note[0].trim();
         const summary = note[1].trim();
         const newNotes = patient.notes;
-        newNotes.push({
+        const currentNote = {
           author: practitioner.name,
           date: new Date().toLocaleDateString(),
           content: content,
           summary: summary
-        });
+        };
+        newNotes.push(currentNote);
+
+        emailPatient(currentNote, patient.name, patient.email);
+
         updatePatient({ _id: patient._id, delta: { notes: newNotes } });
         if (patientErr.isError) {
           setCommandExtra(
