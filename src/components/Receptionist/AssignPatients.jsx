@@ -43,7 +43,12 @@ const AssignPatients = () => {
     const fetchPatients = async () => {
       try {
         const response = await axios.get('/api/patient/all');
-        setPatients(response.data || []);
+        if (Array.isArray(response.data)) {
+          setPatients(response.data);
+        } else {
+          setPatients([]);
+          message.error('Unexpected response format for patients');
+        }
       } catch (error) {
         message.error('Error fetching patients');
         console.error('Error fetching patients:', error);
@@ -53,7 +58,12 @@ const AssignPatients = () => {
     const fetchDoctors = async () => {
       try {
         const response = await axios.get('/api/practitioner/available');
-        setDoctors(response.data || []);
+        if (Array.isArray(response.data)) {
+          setDoctors(response.data);
+        } else {
+          setDoctors([]);
+          message.error('Unexpected response format for doctors');
+        }
       } catch (error) {
         message.error('Error fetching doctors');
         console.error('Error fetching doctors:', error);
@@ -65,7 +75,8 @@ const AssignPatients = () => {
   }, []);
 
   const getDoctorAvailability = (doctor, selectedDate) => {
-    if (!selectedDate || !doctor || !doctor.availability) return [];
+    if (!selectedDate || !doctor || !Array.isArray(doctor.availability))
+      return [];
     const dayOfWeek = selectedDate.format('dddd').toLowerCase();
 
     const availability = doctor.availability.find(
