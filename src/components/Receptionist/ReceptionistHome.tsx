@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Card, Button, Modal } from 'antd';
+import { useState } from 'react';
+import { Layout, Menu, Button, Modal } from 'antd';
 import {
   UserAddOutlined,
   UserSwitchOutlined,
@@ -7,7 +7,8 @@ import {
   QrcodeOutlined
 } from '@ant-design/icons';
 import CheckInForm from './CheckInForm';
-import './ReceptionistHome.css';
+import './style/ReceptionistHome.css';
+import Appointments from './Appointments';
 
 const { Header, Content, Sider } = Layout;
 
@@ -77,13 +78,13 @@ const ReceptionistHome = () => {
         <Content style={{ margin: '0 16px' }}>
           <div
             className="site-layout-background"
-            style={{ padding: 24, minHeight: 360 }}>
-            <Card title="Dashboard" bordered={false}>
-              <p>
-                Welcome to the Receptionist Dashboard. Use the menu on the left
-                to navigate through different actions.
-              </p>
-            </Card>
+            style={{
+              padding: 24,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <Appointments />
           </div>
         </Content>
       </Layout>
