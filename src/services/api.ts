@@ -100,6 +100,22 @@ export const api = createApi({
     }),
 
     // appointments
+    getAllAppointments: build.query<Appointment, string>({
+      query: () => ({
+        url: 'appointment/all',
+        method: 'GET'
+      }),
+      providesTags: ['appointment']
+    }),
+
+    getAppointmentByDate: build.query<Appointment, string>({
+      query: (date) => ({
+        url: `appointment/date/${date}`,
+        method: 'GET'
+      }),
+      providesTags: ['appointment']
+    }),
+
     getAppointment: build.query<Appointment, string>({
       query: (_id) => ({
         url: `appointment/id/${_id}`,
@@ -142,12 +158,15 @@ export const api = createApi({
       }),
       invalidatesTags: ['practitioner', 'receptionist', 'admin']
     }),
+
     getAvailablePractitioners: build.query<Practitioner[], void>({
       query: () => 'practitioner/available'
     }),
+
     getPractitionerAvailability: build.query<any, string>({
       query: (id) => `practitioner/availability/${id}`
     }),
+
     assignPatientToPractitioner: build.mutation<
       void,
       { patientId: string; practitionerId: string }
@@ -173,6 +192,8 @@ export const {
   useDeletePatientMutation,
   useGetPractitionerByUsernameQuery,
   useGetPractitionerQuery,
+  useGetAllAppointmentsQuery,
+  useGetAppointmentByDateQuery,
   useGetAppointmentQuery,
   usePutAppointmentMutation,
   useGetAvailablePractitionersQuery,
