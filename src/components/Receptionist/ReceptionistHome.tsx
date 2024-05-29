@@ -4,6 +4,7 @@ import {
   UserAddOutlined,
   UserSwitchOutlined,
   UserOutlined,
+  UsergroupAddOutlined,
   QrcodeOutlined
 } from '@ant-design/icons';
 import CheckInForm from './CheckInForm';
@@ -48,7 +49,12 @@ const ReceptionistHome = () => {
               View Patient List
             </Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<QrcodeOutlined />}>
+          <Menu.Item key="4" icon={<UsergroupAddOutlined />}>
+            <Link to="/doctor-page" style={{ color: 'white' }}>
+              Doctor page
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<QrcodeOutlined />}>
             <Link to="/generate-qrcode" style={{ color: 'white' }}>
               QR Code
             </Link>
