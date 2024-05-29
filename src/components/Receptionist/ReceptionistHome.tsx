@@ -31,7 +31,13 @@ const ReceptionistHome = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible>
-        <div className="logo" />
+        <div className="logo">
+          <img
+            src="/img/MediLink_Logo.png"
+            alt="Logo"
+            style={{ width: '100%' }}
+          />
+        </div>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           <Menu.Item key="1" icon={<UserAddOutlined />}>
             <Button type="link" onClick={showModal} style={{ color: 'white' }}>
