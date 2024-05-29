@@ -124,8 +124,13 @@ const Appointments = () => {
     filterIcon: (filtered) => (
       <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilter: (value, record) => {
+      let recordValue = record[dataIndex];
+      if (typeof recordValue === 'object' && recordValue !== null) {
+        recordValue = recordValue.name;
+      }
+      return recordValue.toString().toLowerCase().includes(value.toLowerCase());
+    },
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
