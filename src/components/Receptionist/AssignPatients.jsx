@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
 import {
   Table,
   Button,
@@ -20,6 +19,11 @@ import {
 import { SearchOutlined, UserAddOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import dayjs from 'dayjs';
+import {
+  useGetAllPatientsQuery,
+  useGetAvailablePractitionersQuery,
+  useAssignPatientToPractitionerMutation
+} from '../../services/api';
 import './style/AssignPatients.css';
 
 const { Option } = Select;
@@ -28,8 +32,6 @@ const { Header, Content } = Layout;
 
 const AssignPatients = () => {
   const [form] = Form.useForm();
-  const [patients, setPatients] = useState([]);
-  const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState(dayjs());
   const [selectedPatient, setSelectedPatient] = useState('');
   const [selectedDoctor, setSelectedDoctor] = useState('');
@@ -39,44 +41,15 @@ const AssignPatients = () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
 
-  useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        const response = await axios.get('/api/patient/all');
-        if (Array.isArray(response.data)) {
-          setPatients(response.data);
-        } else {
-          setPatients([]);
-          message.error('Unexpected response format for patients');
-        }
-      } catch (error) {
-        message.error('Error fetching patients');
-        console.error('Error fetching patients:', error);
-      }
-    };
-
-    const fetchDoctors = async () => {
-      try {
-        const response = await axios.get('/api/practitioner/available');
-        if (Array.isArray(response.data)) {
-          setDoctors(response.data);
-        } else {
-          setDoctors([]);
-          message.error('Unexpected response format for doctors');
-        }
-      } catch (error) {
-        message.error('Error fetching doctors');
-        console.error('Error fetching doctors:', error);
-      }
-    };
-
-    fetchPatients();
-    fetchDoctors();
-  }, []);
+  const { data: patients = [], isLoading: isLoadingPatients } =
+    useGetAllPatientsQuery();
+  const { data: doctors = [], isLoading: isLoadingDoctors } =
+    useGetAvailablePractitionersQuery();
+  const [assignPatientToPractitioner] =
+    useAssignPatientToPractitionerMutation();
 
   const getDoctorAvailability = (doctor, selectedDate) => {
-    if (!selectedDate || !doctor || !Array.isArray(doctor.availability))
-      return [];
+    if (!selectedDate || !doctor || !doctor.availability) return [];
     const dayOfWeek = selectedDate.format('dddd').toLowerCase();
 
     const availability = doctor.availability.find(
@@ -101,10 +74,11 @@ const AssignPatients = () => {
           reason: values.reason
         };
 
-        await axios.post(
-          `/api/appointment/toPatient/${selectedPatient}/toPractitioner/${selectedDoctor}`,
-          appointment
-        );
+        await assignPatientToPractitioner({
+          patientId: selectedPatient,
+          practitionerId: selectedDoctor,
+          ...appointment
+        }).unwrap();
 
         setIsModalOpen(false);
         message.success('Appointment assigned successfully!');
@@ -274,6 +248,7 @@ const AssignPatients = () => {
                   }}
                   rowKey="_id"
                   className="custom-table"
+                  loading={isLoadingPatients}
                 />
               </Col>
               <Col xs={24} sm={24} md={8}>

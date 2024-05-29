@@ -54,6 +54,16 @@ const CheckInPatients = () => {
       </Form.Item>
 
       <Form.Item
+        name="email"
+        label="Email"
+        rules={[
+          { required: true, message: 'Please enter your email' },
+          { type: 'email', message: 'Please enter a valid email' }
+        ]}>
+        <Input placeholder="Email" />
+      </Form.Item>
+
+      <Form.Item
         name="birthDate"
         label="Birth Date"
         rules={[{ required: true, message: 'Please select your birth date' }]}>
