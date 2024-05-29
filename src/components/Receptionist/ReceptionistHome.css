@@ -1,0 +1,35 @@
+/* ReceptionistHome.css */
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.check-in-form-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.check-in-form {
+  padding: 20px;
+}
+
+.generate-qrcode-container {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.ant-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
