@@ -75,7 +75,6 @@ const AssignPatients: React.FC = () => {
 
       const appointment = {
         date: combinedDateTime,
-        time: selectedTime,
         status: 'scheduled'
       };
 
