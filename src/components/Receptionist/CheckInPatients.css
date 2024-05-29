@@ -1,0 +1,32 @@
+/* CheckInPatients.css */
+.check-in-form-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.check-in-form {
+  padding: 20px;
+}
+
+.ant-modal {
+  top: 20px;
+}
+
+.ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ant-btn-primary {
+  background-color: #4d5f96;
+  border-color: #4d5f96;
+}
+
+.ant-btn-primary:hover {
+  background-color: #8098a0;
+  border-color: #8098a0;
+}
+
+.ant-form-item {
+  margin-bottom: 16px;
+}
