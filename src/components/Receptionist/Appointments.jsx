@@ -247,7 +247,7 @@ const AppointmentViews = () => {
         onSelect={onSelectDate}
         cellRender={cellRender}
       />
-      <Title level={4} style={{ marginTop: '20px' }}>
+      <Title level={4} style={{ marginTop: '20px', textAlign: 'center' }}>
         Appointments for {selectedDate.format('MMMM Do YYYY')}
       </Title>
       <div className="appointment-list-container">
