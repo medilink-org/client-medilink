@@ -8,7 +8,8 @@ import {
   Button,
   Space,
   Modal,
-  Alert
+  Alert,
+  Tag
 } from 'antd';
 import { SearchOutlined, DeleteOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -203,7 +204,7 @@ const Appointments = () => {
       ],
       onFilter: (value, record) => record.status === value,
       render: (status) => (
-        <Badge status={statusColors[status]} text={status.toUpperCase()} />
+        <Tag color={statusColors[status]}>{status.toUpperCase()}</Tag>
       )
     },
     {
