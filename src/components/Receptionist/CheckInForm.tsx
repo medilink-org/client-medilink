@@ -5,7 +5,7 @@ import AllergyField from './AllergyField';
 import PrescriptionField from './PrescriptionField';
 import MedicalHistoryField from './MedicalHistoryField';
 import FamilyHistoryField from './FamilyHistoryField';
-import './CheckInPatients.css';
+import './style/CheckInPatients.css';
 
 const CheckInPatients = () => {
   const [form] = Form.useForm();

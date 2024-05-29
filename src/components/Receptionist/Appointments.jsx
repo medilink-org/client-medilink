@@ -17,7 +17,7 @@ import {
   useGetAllAppointmentsQuery,
   useDeleteAppointmentMutation
 } from '../../services/api';
-import './Appointments.css';
+import './style/Appointments.css';
 
 const { Title } = Typography;
 

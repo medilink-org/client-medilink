@@ -1,7 +1,7 @@
 import React from 'react';
 import QRCode from 'qrcode.react';
 import { Typography, Button, Space } from 'antd';
-import './GenerateQRCode.css';
+import './style/GenerateQRCode.css';
 
 const { Title, Paragraph } = Typography;
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 import CheckInForm from './CheckInForm';
 import axiosInstance from '../../axiosInstance';
-import './CheckInPatients.css';
+import './style/CheckInPatients.css';
 
 const CheckInPatients = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
