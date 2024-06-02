@@ -36,7 +36,7 @@ const items: DescriptionsProps['items'] = [
   {
     key: '1',
     label: 'Name',
-    children: 'Dr. Alexa Ford'
+    children: 'Dr. Demo Jr'
   },
   {
     key: '2',
@@ -327,7 +327,7 @@ const DoctorPageFord: React.FC<{ doctorId: string }> = ({ doctorId }) => {
       </div>
       <div className="calendar-and-scheduling">
         <div className="calendar">
-          <h1>Availability for Dr. Ford</h1>
+          <h1>Availability for Dr. Demo Jr</h1>
           <Calendar
             value={value}
             fullscreen={false}
