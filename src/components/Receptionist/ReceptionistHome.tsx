@@ -9,14 +9,14 @@ import ReceptionistNav from './ReceptionistNavBar';
 const { Header, Content } = Layout;
 
 const ReceptionistHome = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -38,7 +38,7 @@ const ReceptionistHome = () => {
       </Layout>
       <Modal
         title="Check-In Patient"
-        visible={isModalVisible}
+        open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}>
