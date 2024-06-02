@@ -11,7 +11,7 @@ import './index.css';
 import ReceptionistHome from './components/Receptionist/ReceptionistHome';
 import ViewPatients from './components/Receptionist/ViewPatients';
 import PatientDetails from './components/Receptionist/PatientDetails';
-import AssignPatients from './components/Receptionist/AssignPatients';
+import AssignPatients from './components/Receptionist/AssignPatient';
 import AdminHome from './components/Layout/AdminHome';
 import UserPage from './components/Admin/ManageUsers/UsersPage';
 import CheckInForm from './components/Receptionist/CheckInForm';

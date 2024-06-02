@@ -22,15 +22,17 @@ import dayjs from 'dayjs';
 import {
   useGetAllPatientsQuery,
   useGetAvailablePractitionersQuery,
-  useAssignPatientToPractitionerMutation
+  useAssignPatientToPractitionerMutation,
+  useDeletePatientMutation
 } from '../../services/api';
-import './style/AssignPatients.css';
+import { DeleteOutlined } from '@mui/icons-material';
+import './style/AssignPatient.css';
 
 const { Option } = Select;
 const { Title } = Typography;
 const { Header, Content } = Layout;
 
-const AssignPatients = () => {
+const AssignPatient = () => {
   const [form] = Form.useForm();
   const [date, setDate] = useState(dayjs());
   const [selectedPatient, setSelectedPatient] = useState('');
@@ -47,6 +49,7 @@ const AssignPatients = () => {
     useGetAvailablePractitionersQuery();
   const [assignPatientToPractitioner] =
     useAssignPatientToPractitionerMutation();
+  const [deletePatient, { isLoading: isDeleting }] = useDeletePatientMutation();
 
   const getDoctorAvailability = (doctor, selectedDate) => {
     if (!selectedDate || !doctor || !doctor.availability) return [];
@@ -99,6 +102,17 @@ const AssignPatients = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText('');
+  };
+
+  const handleDelete = (patientId) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this appointment?',
+      onOk: async () => {
+        console.log('Delete patient:', patientId);
+        await deletePatient({ _id: patientId });
+        // setPatients(patients.filter((patient) => patient._id !== patientId));
+      }
+    });
   };
 
   const getColumnSearchProps = (dataIndex, title) => ({
@@ -213,10 +227,20 @@ const AssignPatients = () => {
               Assign
             </Button>
           </Tooltip>
+          <Tooltip title="Delete">
+            <Button
+              type="danger"
+              icon={<DeleteOutlined style={{ color: 'red' }} />}
+              onClick={() => handleDelete(record._id)}
+              disabled={isDeleting}
+              loading={isDeleting}
+            />
+          </Tooltip>
         </Space>
       )
     }
   ];
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Layout className="site-layout">
@@ -247,6 +271,7 @@ const AssignPatients = () => {
                   }}
                   rowKey="_id"
                   className="custom-table"
+                  loading={isLoadingPatients}
                 />
               </Col>
               <Col xs={24} sm={24} md={8}>
@@ -340,4 +365,4 @@ const AssignPatients = () => {
   );
 };
 
-export default AssignPatients;
+export default AssignPatient;
