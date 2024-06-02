@@ -22,6 +22,9 @@ import DoctorPageFord from './components/Receptionist/DoctorPageFord';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const dr_johnson_id = '65e782efdfd64159ca0b52d2';
+const dr_ford_id = '65e7830edfd64159ca0b52d4';
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -43,8 +46,14 @@ root.render(
           <Route path="/checkin" element={<CheckInForm />} />
           <Route path="/generate-qrcode" element={<GenerateQRCode />} />
           <Route path="/doctor-page" element={<SelectDoctor />} />
-          <Route path="/doctor-page-johnson" element={<DoctorPageJohnson />} />
-          <Route path="/doctor-page-ford" element={<DoctorPageFord />} />
+          <Route
+            path="/doctor-page-johnson"
+            element={<DoctorPageJohnson doctorId={dr_johnson_id} />}
+          />
+          <Route
+            path="/doctor-page-ford"
+            element={<DoctorPageFord doctorId={dr_ford_id} />}
+          />
           <Route
             path="*"
             element={
