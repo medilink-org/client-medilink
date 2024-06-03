@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ScheduleSelector from 'react-schedule-selector';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 import { Button, Container, Typography, Box } from '@mui/material';
 
 const DoctorAvailability = ({ doctorId }) => {
@@ -10,8 +10,8 @@ const DoctorAvailability = ({ doctorId }) => {
     // Fetch existing availability
     const fetchAvailability = async () => {
       try {
-        const response = await axios.get(
-          `/api/practitioner/availability/${doctorId}`
+        const response = await axiosInstance.get(
+          `/practitioner/availability/${doctorId}`
         );
         console.log('Availability response:', response.data);
         if (Array.isArray(response.data)) {
@@ -70,8 +70,8 @@ const DoctorAvailability = ({ doctorId }) => {
       }
       return acc;
     }, []);
-    axios
-      .put(`/api/practitioner/availability/${doctorId}`, { availability })
+    axiosInstance
+      .put(`/practitioner/availability/${doctorId}`, { availability })
       .then((response) => {
         console.log('Availability updated:', response.data);
       })
@@ -81,8 +81,8 @@ const DoctorAvailability = ({ doctorId }) => {
   };
 
   const handleDelete = () => {
-    axios
-      .delete(`/api/practitioner/availability/${doctorId}`)
+    axiosInstance
+      .delete(`/practitioner/availability/${doctorId}`)
       .then(() => {
         setSchedule([]); // Clear the schedule state
         console.log('Availability deleted');
