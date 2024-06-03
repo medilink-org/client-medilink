@@ -133,6 +133,15 @@ export const api = createApi({
       invalidatesTags: ['appointment', 'patient', 'practitioner']
     }),
 
+    createPatientAppointment: build.mutation({
+      query: ({ selectedPatient, selectedDoctor, appointment }) => ({
+        url: `appointment/toPatient/${selectedPatient}/toPractitioner/${selectedDoctor}`,
+        method: 'POST',
+        body: appointment
+      }),
+      invalidatesTags: ['appointment', 'patient', 'practitioner']
+    }),
+
     deleteAppointment: build.mutation<void, { _id: string }>({
       query: (_id) => ({
         url: `appointment/${_id}`,
@@ -204,6 +213,7 @@ export const {
   useGetAppointmentByDateQuery,
   useGetAppointmentQuery,
   usePutAppointmentMutation,
+  useCreatePatientAppointmentMutation,
   useDeleteAppointmentMutation,
   useGetAvailablePractitionersQuery,
   useGetPractitionerAvailabilityQuery,
