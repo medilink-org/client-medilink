@@ -11,7 +11,7 @@ import './style/ReceptionistHome.css';
 import Appointments from './Appointments';
 import { Link } from 'react-router-dom';
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const ReceptionistHome = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -60,9 +60,6 @@ const ReceptionistHome = () => {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header
-          className="site-layout-background"
-          style={{ padding: 0 }}></Header>
         <Content style={{ margin: '0 16px' }}>
           <div
             className="site-layout-background"
