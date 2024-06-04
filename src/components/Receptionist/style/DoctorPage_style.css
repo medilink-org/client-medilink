@@ -1,0 +1,25 @@
+.calendar-and-scheduling {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 100px;
+}
+.patient-list {
+    display: inline;
+    width: 120%;
+    margin-left: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.patient-list h1 {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 25px;
+    /* margin */
+
+}
+.calendar {
+    margin-right: 30px;
+}
