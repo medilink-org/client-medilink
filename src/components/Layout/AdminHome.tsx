@@ -1,15 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import UserPage from '../Admin/ManageUsers/UsersPage';
-import { Button } from '@mui/material';
+import { Card } from 'antd';
 
 export default function AdminHome() {
   return (
     <div>
-      <h1>Admin Home...</h1>
-      <Button>
-        <Link to="/users">Go to User Page</Link>
-      </Button>
+      <Card style={{ maxWidth: 600, margin: '20px' }}>
+        <h2>Welcome to the Admin Dashboard</h2>
+        <p>
+          From here, you can manage all user accounts and their respective
+          permissions.
+        </p>
+      </Card>
     </div>
   );
 }

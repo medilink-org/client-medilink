@@ -74,7 +74,7 @@ export default function SummaryBox({
               <p>
                 <b>Client:</b>{' '}
                 <Link
-                  to="/patient/"
+                  to="/practitioner-patient/"
                   state={{
                     patient: patient,
                     practitioner: practitioner

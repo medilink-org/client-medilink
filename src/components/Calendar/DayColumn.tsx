@@ -34,7 +34,7 @@ export default function DayColumn({
         appointments.map((appointment, index) => (
           <React.Fragment key={index}>
             <StyledAppointmentCard
-              to="/patient/"
+              to="/practitioner-patient/"
               state={{
                 patient: practitioner.patients.find((patient) => {
                   return (

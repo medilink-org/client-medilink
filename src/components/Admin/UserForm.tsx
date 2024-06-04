@@ -17,7 +17,7 @@ import {
   CloseCircleOutlined
 } from '@ant-design/icons';
 import copy from 'copy-to-clipboard';
-import { useCreateUserMutation } from '../../../services/api';
+import { useCreateUserMutation } from '../../services/api';
 
 const { Option } = Select;
 const formItemLayout = {

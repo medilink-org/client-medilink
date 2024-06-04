@@ -97,7 +97,7 @@ export default function HomePage({ practitioner }: props) {
             practitioner={practitioner}
             appointment={nextAppointment}
           />
-          <Link to={`/availability/${practitioner._id}`}>
+          <Link to={`/practitioner-availability/${practitioner._id}`}>
             <Button
               style={{
                 border: '1px solid grey',
@@ -147,7 +147,7 @@ const BoxNavParent = styled.div`
   height: 100%;
   gap: 1rem;
   padding: 1rem;
-  margin-top: 100px;
+  margin-top: 40px;
 `;
 
 const LeftSide = styled.div`

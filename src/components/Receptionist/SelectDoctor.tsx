@@ -1,36 +1,23 @@
 import React from 'react';
 import { Card } from 'antd';
-import Box from '@mui/material/Box';
-import { CssBaseline } from '@mui/material';
-import TopBar from '../PatientView/TopBar';
 import './style/reception_style.css';
 import { useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
 
 const SelectDoctor: React.FC = () => {
-  const topBarProps = {
-    logo: '/img/medilink_logo.webp',
-    left: null,
-    children: null,
-    right: null,
-    style: null,
-    practitioner: null,
-    path: null
-  };
-
   const navigate = useNavigate();
 
   const handleSelectDoctor = (doctorId: string) => {
-    navigate(`/doctor-page/${doctorId}`);
+    navigate(`/receptionist-doctor-page/${doctorId}`);
   };
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <TopBar {...topBarProps} />
-      </Box>
+      <Card style={{ maxWidth: 600, margin: '20px' }}>
+        <h2>Select a Doctor</h2>
+        <p>Choose the doctor you want to see and schedule an appointment.</p>
+      </Card>
       <div className="doctors-cards">
         <Card
           hoverable

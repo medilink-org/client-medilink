@@ -19,13 +19,9 @@ import {
 } from 'antd';
 import Highlighter from 'react-highlight-words';
 import moment from 'moment';
-import {
-  useGetAllUsersQuery,
-  useDeleteUserMutation
-} from '../../../services/api';
+import { useGetAllUsersQuery, useDeleteUserMutation } from '../../services/api';
 import UserForm from './UserForm';
 import './Users.css';
-import TopBar from '../../PatientView/TopBar';
 
 const { Title } = Typography;
 
@@ -209,18 +205,8 @@ const UsersPage = () => {
     }
   ];
 
-  const topBarProps = {
-    logo: '/img/medilink_logo.webp',
-    left: null,
-    children: null,
-    right: null,
-    style: null,
-    path: '/admin-home'
-  };
-
   return (
     <div>
-      <TopBar {...topBarProps} />
       <div className="app-container">
         <div className="header">
           <Title
