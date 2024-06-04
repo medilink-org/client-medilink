@@ -40,7 +40,8 @@
     "react-router-dom": "^6.17.0",
     "react-schedule-selector": "^2.0.0",
     "styled-components": "^6.1.1",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
