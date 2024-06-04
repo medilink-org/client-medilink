@@ -17,3 +17,13 @@
 .doctor-availability {
   margin-top: 16px;
 }
+
+.ant-btn-primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.ant-btn-danger {
+  background-color: #ff4d4f;
+  border-color: #ff4d4f;
+}

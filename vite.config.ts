@@ -15,10 +15,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target:
-          import.meta.env.VITE_BUILD_ENV === 'prod'
-            ? import.meta.env.VITE_API_PROD_URL
-            : import.meta.env.VITE_API_DEV_URL,
+        target: 'http://localhost:3001',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
