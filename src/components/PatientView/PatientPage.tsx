@@ -66,7 +66,7 @@ export default function PatientPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginTop: '40px'
+            marginTop: '10px'
           }}>
           <div
             style={{
