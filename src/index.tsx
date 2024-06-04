@@ -16,6 +16,8 @@ import AdminHome from './components/Layout/AdminHome';
 import UserPage from './components/Admin/ManageUsers/UsersPage';
 import CheckInForm from './components/Receptionist/CheckInForm';
 import GenerateQRCode from './components/Receptionist/GenerateQRCode';
+import SelectDoctor from './components/Receptionist/SelectDoctor';
+import DoctorDisplayPage from './components/Receptionist/DoctorDisplayPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -39,6 +41,11 @@ root.render(
           <Route path="/users" element={<UserPage />} />
           <Route path="/checkin" element={<CheckInForm />} />
           <Route path="/generate-qrcode" element={<GenerateQRCode />} />
+          <Route path="/doctor-page" element={<SelectDoctor />} />
+          <Route
+            path="/doctor-page/:doctorId"
+            element={<DoctorDisplayPage />}
+          />
           <Route
             path="*"
             element={
