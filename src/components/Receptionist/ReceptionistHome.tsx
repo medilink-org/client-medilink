@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Layout, Menu, Button, Modal } from 'antd';
+import { Layout, Menu, Modal } from 'antd';
 import {
   UserAddOutlined,
   UserSwitchOutlined,
   UserOutlined,
-  QrcodeOutlined
+  QrcodeOutlined,
+  LogoutOutlined
 } from '@ant-design/icons';
 import CheckInForm from './CheckInForm';
 import './style/ReceptionistHome.css';
 import Appointments from './Appointments';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const { Content, Sider } = Layout;
 
@@ -30,13 +31,17 @@ const ReceptionistHome = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible>
+      <Sider
+        style={{ overflow: 'auto', height: '100vh', position: 'fixed' }}
+        collapsible>
         <div className="logo">
-          <img
-            src="/img/MediLink_Logo.png"
-            alt="Logo"
-            style={{ width: '100%' }}
-          />
+          <Link to="/receptionist-home">
+            <img
+              src="/img/MediLink_Logo.png"
+              alt="Logo"
+              style={{ width: '100%' }}
+            />
+          </Link>
         </div>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           <Menu.Item key="1" icon={<UserAddOutlined />} onClick={showModal}>
@@ -56,6 +61,11 @@ const ReceptionistHome = () => {
             <Link to="/generate-qrcode" style={{ color: 'white' }}>
               QR Code
             </Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<LogoutOutlined />} className="sign-out">
+            <NavLink to="/" style={{ color: 'white' }}>
+              Sign Out
+            </NavLink>
           </Menu.Item>
         </Menu>
       </Sider>
