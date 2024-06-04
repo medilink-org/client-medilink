@@ -64,7 +64,10 @@ root.render(
               element={<GenerateQRCode />}
             />
 
-            <Route path="/patient-details/:id" element={<PatientDetails />} />
+            <Route
+              path="/receptionist-patient-details/:id"
+              element={<PatientDetails />}
+            />
             <Route path="/admin-home" element={<AdminHome />} />
             <Route path="/admin-users" element={<UserPage />} />
           </Route>
