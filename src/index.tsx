@@ -11,7 +11,7 @@ import './index.css';
 import ReceptionistHome from './components/Receptionist/ReceptionistHome';
 import ViewPatients from './components/Receptionist/ViewPatients';
 import PatientDetails from './components/Receptionist/PatientDetails';
-import AssignPatients from './components/Receptionist/AssignPatient';
+import AssignPatient from './components/Receptionist/AssignPatient';
 import AdminHome from './components/Layout/AdminHome';
 import UserPage from './components/Admin/ManageUsers/UsersPage';
 import CheckInForm from './components/Receptionist/CheckInForm';
@@ -36,7 +36,7 @@ root.render(
           <Route path="/receptionist-home" element={<ReceptionistHome />} />
           <Route path="/view-patients" element={<ViewPatients />} />
           <Route path="/patient-details/:id" element={<PatientDetails />} />
-          <Route path="/assign-patient" element={<AssignPatients />} />
+          <Route path="/assign-patient" element={<AssignPatient />} />
           <Route path="/admin-home" element={<AdminHome />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/checkin" element={<CheckInForm />} />
