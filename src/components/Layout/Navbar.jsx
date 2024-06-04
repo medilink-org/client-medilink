@@ -8,7 +8,8 @@ import {
   LogoutOutlined,
   DashboardOutlined,
   SettingOutlined,
-  ScheduleOutlined
+  ScheduleOutlined,
+  UsergroupAddOutlined
 } from '@ant-design/icons';
 import { Link, NavLink } from 'react-router-dom';
 import CheckInForm from '../Receptionist/CheckInForm';
@@ -71,12 +72,18 @@ const Navbar = ({ role }) => {
           },
           {
             key: '3',
+            icon: <UsergroupAddOutlined />,
+            label: 'Doctor Page',
+            path: '/receptionist-doctor-page'
+          },
+          {
+            key: '4',
             icon: <UserOutlined />,
             label: 'View Patient List',
             path: '/receptionist-view-patients'
           },
           {
-            key: '4',
+            key: '5',
             icon: <QrcodeOutlined />,
             label: 'QR Code',
             path: '/receptionist-generate-qrcode'
