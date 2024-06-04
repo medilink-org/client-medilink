@@ -82,7 +82,7 @@ const AppointmentCard = ({ patient, practitioner, appointment }: Props) => {
   return (
     <AppointmentCardWrapper barColor={color} dataTooltip={tooltip}>
       <StyledAppointmentCard
-        to="/patient/"
+        to="/practitioner-patient/"
         state={{
           patient: patient,
           practitioner: practitioner,
