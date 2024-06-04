@@ -21,7 +21,6 @@ import {
   message
   //   Layout
 } from 'antd';
-import { CssBaseline } from '@mui/material';
 import type { DescriptionsProps, TableColumnsType } from 'antd';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
@@ -31,7 +30,6 @@ import {
   UserAddOutlined,
   DeleteOutlined
 } from '@ant-design/icons';
-import TopBar from '../PatientView/TopBar';
 import {
   useGetAllAppointmentsQuery,
   useGetAvailablePractitionersQuery,
@@ -42,19 +40,8 @@ import {
 } from '../../services/api';
 import './style/DoctorPage_style.css';
 
-const { Option } = Select;
-
 const DoctorDisplayPage: React.FC = () => {
   const { doctorId } = useParams<{ doctorId: string }>();
-  const topBarProps = {
-    logo: '/img/medilink_logo.webp',
-    left: null,
-    children: null,
-    right: null,
-    style: null,
-    practitioner: null,
-    path: null
-  };
 
   const [form] = Form.useForm();
   const [date, setDate] = useState(dayjs());
@@ -66,7 +53,7 @@ const DoctorDisplayPage: React.FC = () => {
   const searchInput = useRef(null);
 
   const { data: appointments, isLoading: isLoadingAppointments } =
-    useGetAllAppointmentsQuery();
+    useGetAllAppointmentsQuery('_');
   const { data: doctors = [], isLoading: isLoadingDoctors } =
     useGetAvailablePractitionersQuery();
   const { data: patients = [], isLoading: isLoadingPatients } =
@@ -342,12 +329,12 @@ const DoctorDisplayPage: React.FC = () => {
           </Tooltip>
           <Tooltip title="Delete">
             <Button
-              type="default"
+              type="danger"
               icon={<DeleteOutlined />}
               onClick={() => handleDelete(record._id)}
               disabled={isDeleting}
               loading={isDeleting}
-              style={{ marginTop: '12px' }}
+              style={{ marginTop: '4px' }}
             />
           </Tooltip>
         </Space>
@@ -385,11 +372,9 @@ const DoctorDisplayPage: React.FC = () => {
 
   return (
     <div className="doctor-page-container">
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <TopBar {...topBarProps} />
-      </Box>
-      <div className="doctor-description-and-image">
+      <div
+        className="doctor-description-and-image"
+        style={{ marginBottom: '40px' }}>
         <Image width={200} className="doctor-image" src={doctorDetails.image} />
         <Descriptions
           layout="vertical"
@@ -402,7 +387,9 @@ const DoctorDisplayPage: React.FC = () => {
       </div>
       <div className="calendar-and-scheduling">
         <div className="calendar">
-          <h1>Availability for {doctorDetails.name}</h1>
+          <h1 style={{ textAlign: 'center' }}>
+            Availability for {doctorDetails.name}
+          </h1>
           <Calendar
             value={date}
             fullscreen={false}
@@ -410,7 +397,7 @@ const DoctorDisplayPage: React.FC = () => {
             onPanelChange={onPanelChange}
             cellRender={cellRender}
           />
-          <div style={{ marginTop: 10 }}>
+          <div style={{ marginTop: 10, textAlign: 'center' }}>
             <h1 style={{ fontSize: '30px' }}>Select a Time</h1>
             <Select
               value={selectedTime}
@@ -429,8 +416,7 @@ const DoctorDisplayPage: React.FC = () => {
             </Select>
           </div>
         </div>
-        <div className="patient-list">
-          <h1>Assign Patient</h1>
+        <div className="patient-list" style={{ marginTop: '40px' }}>
           <Row gutter={16}>
             <Col xs={24} sm={24} md={16}>
               <Table
