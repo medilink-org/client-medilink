@@ -22,25 +22,24 @@ declare module '@mui/material/Button' {
 
 const TopBar = ({ children }) => {
   return (
-    <>
+    <div style={{ textAlign: 'center' }}>
       <StyledTopBar>
         <Center>{children}</Center>
       </StyledTopBar>
       <Outlet />
-    </>
+    </div>
   );
 };
 
 const StyledTopBar = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex;
   max-width: 800px;
-  margin: auto;
   box-sizing: border-box;
   z-index: 997;
-  padding: 0;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 `;
 
 const Center = styled.div`
@@ -48,7 +47,6 @@ const Center = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 50%;
 `;
 
 export default TopBar;
