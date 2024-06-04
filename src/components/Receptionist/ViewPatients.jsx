@@ -7,8 +7,7 @@ import {
   Space,
   Typography,
   Tooltip,
-  message,
-  Card
+  message
 } from 'antd';
 import { SearchOutlined, EyeOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -37,7 +36,7 @@ const ViewPatients = () => {
   }, []);
 
   const handleViewPatient = (id) => {
-    navigate(`/patient-details/${id}`);
+    navigate(`/receptionist-patient-details/${id}`);
   };
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -176,19 +175,18 @@ const ViewPatients = () => {
   return (
     <div className="view-patients-container">
       <div style={{ padding: '24px' }}>
-        <Card className="custom-card">
-          <Title
-            level={2}
-            style={{ margin: 0, textAlign: 'center', marginBottom: '20px' }}>
-            Patient List
-          </Title>
-          <Table
-            columns={columns}
-            dataSource={patients}
-            pagination={{ pageSize: 10, showSizeChanger: true }}
-            rowKey="_id"
-          />
-        </Card>
+        <Title
+          level={3}
+          style={{ margin: 0, textAlign: 'center', marginBottom: '20px' }}>
+          Patient List
+        </Title>
+        <Table
+          columns={columns}
+          dataSource={patients}
+          pagination={{ pageSize: 10, showSizeChanger: true }}
+          rowKey="_id"
+          className="custom-table"
+        />
       </div>
     </div>
   );
