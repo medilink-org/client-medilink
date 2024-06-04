@@ -5,7 +5,8 @@ import {
   UserSwitchOutlined,
   UserOutlined,
   QrcodeOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  UsergroupAddOutlined
 } from '@ant-design/icons';
 import CheckInForm from './CheckInForm';
 import './style/ReceptionistHome.css';
@@ -15,14 +16,18 @@ import { Link, NavLink } from 'react-router-dom';
 const { Content, Sider } = Layout;
 
 const ReceptionistHome = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
   const handleOk = () => {
-    setIsModalOpen(false);
+    setIsModalVisible(false);
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false);
+    setIsModalVisible(false);
   };
 
   return (
@@ -53,12 +58,17 @@ const ReceptionistHome = () => {
               View Patient List
             </Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<QrcodeOutlined />}>
+          <Menu.Item key="4" icon={<UsergroupAddOutlined />}>
+            <Link to="/doctor-page" style={{ color: 'white' }}>
+              Doctor Page
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<QrcodeOutlined />}>
             <Link to="/generate-qrcode" style={{ color: 'white' }}>
               QR Code
             </Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<LogoutOutlined />} className="sign-out">
+          <Menu.Item key="6" icon={<LogoutOutlined />} className="sign-out">
             <NavLink to="/" style={{ color: 'white' }}>
               Sign Out
             </NavLink>
@@ -81,7 +91,7 @@ const ReceptionistHome = () => {
       </Layout>
       <Modal
         title="Check-In Patient"
-        open={isModalOpen}
+        visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}>
