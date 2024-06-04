@@ -7,17 +7,33 @@ import Layout from './components/Layout/Layout';
 import Login from './components/Login/Login';
 import PatientPage from './components/PatientView/PatientPage';
 import DoctorAvailabilityPage from './components/DoctorAvailabilityPage';
-import './index.css';
 import ReceptionistHome from './components/Receptionist/ReceptionistHome';
 import ViewPatients from './components/Receptionist/ViewPatients';
 import PatientDetails from './components/Receptionist/PatientDetails';
 import AssignPatient from './components/Receptionist/AssignPatient';
 import AdminHome from './components/Layout/AdminHome';
-import UserPage from './components/Admin/ManageUsers/UsersPage';
+import UserPage from './components/Admin/UsersPage';
 import CheckInForm from './components/Receptionist/CheckInForm';
 import GenerateQRCode from './components/Receptionist/GenerateQRCode';
+import PractitionerHome from './components/Practitioner/PractitionerHome';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const NotFound = () => (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      fontSize: '2em',
+      color: '#333',
+      backgroundColor: '#f5f5f5'
+    }}>
+    404 Page not found
+  </div>
+);
 
 root.render(
   <React.StrictMode>
@@ -25,37 +41,34 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/practitioner-home" element={<Layout />} />
-          <Route path="/patient" element={<PatientPage />} />
-          <Route
-            path="/availability/:doctorId"
-            element={<DoctorAvailabilityPage />}
-          />
-          <Route path="/receptionist-home" element={<ReceptionistHome />} />
-          <Route path="/view-patients" element={<ViewPatients />} />
-          <Route path="/patient-details/:id" element={<PatientDetails />} />
-          <Route path="/assign-patient" element={<AssignPatient />} />
-          <Route path="/admin-home" element={<AdminHome />} />
-          <Route path="/users" element={<UserPage />} />
-          <Route path="/checkin" element={<CheckInForm />} />
-          <Route path="/generate-qrcode" element={<GenerateQRCode />} />
-          <Route
-            path="*"
-            element={
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '100vh',
-                  fontSize: '2em',
-                  color: '#333',
-                  backgroundColor: '#f5f5f5'
-                }}>
-                404 Page not found
-              </div>
-            }
-          />
+          <Route element={<Layout />}>
+            <Route path="/practitioner-home" element={<PractitionerHome />} />
+            <Route path="/practitioner-patient" element={<PatientPage />} />
+            <Route
+              path="/practitioner-availability/:doctorId"
+              element={<DoctorAvailabilityPage />}
+            />
+
+            <Route path="/receptionist-home" element={<ReceptionistHome />} />
+            <Route
+              path="/receptionist-view-patients"
+              element={<ViewPatients />}
+            />
+            <Route
+              path="/receptionist-assign-patient"
+              element={<AssignPatient />}
+            />
+            <Route path="/receptionist-checkin" element={<CheckInForm />} />
+            <Route
+              path="/receptionist-generate-qrcode"
+              element={<GenerateQRCode />}
+            />
+
+            <Route path="/patient-details/:id" element={<PatientDetails />} />
+            <Route path="/admin-home" element={<AdminHome />} />
+            <Route path="/admin-users" element={<UserPage />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </Provider>
