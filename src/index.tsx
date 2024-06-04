@@ -70,9 +70,12 @@ root.render(
               element={<PatientDetails />}
             />
 
-            <Route path="/doctor-page" element={<SelectDoctor />} />
             <Route
-              path="/doctor-page/:doctorId"
+              path="/receptionist-doctor-page"
+              element={<SelectDoctor />}
+            />
+            <Route
+              path="/receptionist-doctor-page/:doctorId"
               element={<DoctorDisplayPage />}
             />
 
