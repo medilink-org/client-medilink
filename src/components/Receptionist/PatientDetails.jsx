@@ -44,7 +44,6 @@ const PatientDetails = () => {
     <div
       style={{
         padding: '24px',
-        backgroundColor: '#f0f2f5',
         minHeight: '100vh'
       }}>
       <Title level={2} style={{ textAlign: 'center', marginBottom: '24px' }}>
