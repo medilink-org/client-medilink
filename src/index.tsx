@@ -17,13 +17,9 @@ import UserPage from './components/Admin/ManageUsers/UsersPage';
 import CheckInForm from './components/Receptionist/CheckInForm';
 import GenerateQRCode from './components/Receptionist/GenerateQRCode';
 import SelectDoctor from './components/Receptionist/SelectDoctor';
-import DoctorPageJohnson from './components/Receptionist/DoctorPageJohnson';
-import DoctorPageFord from './components/Receptionist/DoctorPageFord';
+import DoctorDisplayPage from './components/Receptionist/DoctorDisplayPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-const dr_johnson_id = '65e782efdfd64159ca0b52d2';
-const dr_ford_id = '65e7830edfd64159ca0b52d4';
 
 root.render(
   <React.StrictMode>
@@ -47,12 +43,8 @@ root.render(
           <Route path="/generate-qrcode" element={<GenerateQRCode />} />
           <Route path="/doctor-page" element={<SelectDoctor />} />
           <Route
-            path="/doctor-page-johnson"
-            element={<DoctorPageJohnson doctorId={dr_johnson_id} />}
-          />
-          <Route
-            path="/doctor-page-ford"
-            element={<DoctorPageFord doctorId={dr_ford_id} />}
+            path="/doctor-page/:doctorId"
+            element={<DoctorDisplayPage />}
           />
           <Route
             path="*"
