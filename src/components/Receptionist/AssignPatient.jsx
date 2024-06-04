@@ -17,22 +17,23 @@ import {
   Layout
 } from 'antd';
 import { SearchOutlined, UserAddOutlined } from '@ant-design/icons';
-import Highlighter from 'react-highlight-words';
-import dayjs from 'dayjs';
 import {
   useGetAllPatientsQuery,
   useGetAvailablePractitionersQuery,
+  useCreatePatientAppointmentMutation,
   useAssignPatientToPractitionerMutation,
   useDeletePatientMutation
 } from '../../services/api';
-import { DeleteOutlined } from '@mui/icons-material';
+import Highlighter from 'react-highlight-words';
+import dayjs from 'dayjs';
 import './style/AssignPatient.css';
+import { DeleteOutlined } from '@mui/icons-material';
 
 const { Option } = Select;
 const { Title } = Typography;
 const { Header, Content } = Layout;
 
-const AssignPatient = () => {
+const AssignPatients = () => {
   const [form] = Form.useForm();
   const [date, setDate] = useState(dayjs());
   const [selectedPatient, setSelectedPatient] = useState('');
@@ -45,14 +46,14 @@ const AssignPatient = () => {
 
   const { data: patients = [], isLoading: isLoadingPatients } =
     useGetAllPatientsQuery();
-  const { data: doctors = [], isLoading: isLoadingDoctors } =
-    useGetAvailablePractitionersQuery();
+  const { data: doctors = [] } = useGetAvailablePractitionersQuery();
   const [assignPatientToPractitioner] =
     useAssignPatientToPractitionerMutation();
+  const [createPatientAppointment] = useCreatePatientAppointmentMutation();
   const [deletePatient, { isLoading: isDeleting }] = useDeletePatientMutation();
 
   const getDoctorAvailability = (doctor, selectedDate) => {
-    if (!selectedDate || !doctor || !doctor.availability) return [];
+    if (!selectedDate) return [];
     const dayOfWeek = selectedDate.format('dddd').toLowerCase();
 
     const availability = doctor.availability.find(
@@ -77,10 +78,17 @@ const AssignPatient = () => {
           reason: values.reason
         };
 
+        // Assign patient to doctor
         await assignPatientToPractitioner({
           patientId: selectedPatient,
-          practitionerId: selectedDoctor,
-          ...appointment
+          practitionerId: selectedDoctor
+        }).unwrap();
+
+        // Create appointment for patient
+        await createPatientAppointment({
+          selectedPatient,
+          selectedDoctor,
+          appointment
         }).unwrap();
 
         setIsModalOpen(false);
@@ -90,6 +98,7 @@ const AssignPatient = () => {
       }
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
+      message.error('Failed to assign appointment');
     }
   };
 
@@ -108,9 +117,13 @@ const AssignPatient = () => {
     Modal.confirm({
       title: 'Are you sure you want to delete this appointment?',
       onOk: async () => {
-        console.log('Delete patient:', patientId);
-        await deletePatient({ _id: patientId });
-        // setPatients(patients.filter((patient) => patient._id !== patientId));
+        try {
+          await deletePatient({ _id: patientId }).unwrap();
+          message.success('Patient deleted successfully');
+        } catch (error) {
+          console.error('Failed to delete patient:', error);
+          message.error('Failed to delete patient');
+        }
       }
     });
   };
@@ -230,10 +243,11 @@ const AssignPatient = () => {
           <Tooltip title="Delete">
             <Button
               type="danger"
-              icon={<DeleteOutlined style={{ color: 'red' }} />}
+              icon={<DeleteOutlined />}
               onClick={() => handleDelete(record._id)}
               disabled={isDeleting}
               loading={isDeleting}
+              style={{ marginTop: '12px' }}
             />
           </Tooltip>
         </Space>
@@ -243,20 +257,27 @@ const AssignPatient = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+      <Layout
+        style={{
+          boxShadow:
+            '0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05)'
+        }}>
+        <Header
+          style={{
+            padding: '20px',
+            backgroundColor: '#f0f2f5',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
           <Title
             level={2}
             style={{
-              margin: 0,
-              color: '',
-              padding: '20px',
-              marginLeft: '220px'
+              color: '#001529'
             }}>
             Assign Patients to Doctors
           </Title>
         </Header>
-        <Content style={{ margin: '0 16px' }}>
+        <Content style={{ marginTop: '30px' }}>
           <div
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}>
@@ -325,6 +346,7 @@ const AssignPatient = () => {
           </div>
         </Content>
       </Layout>
+
       <Modal
         title="Assign Patient"
         open={isModalOpen}
@@ -365,4 +387,4 @@ const AssignPatient = () => {
   );
 };
 
-export default AssignPatient;
+export default AssignPatients;

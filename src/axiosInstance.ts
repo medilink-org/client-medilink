@@ -5,8 +5,7 @@ const prodUrl = import.meta.env.VITE_API_PROD_URL;
 const buildEnv = import.meta.env.VITE_BUILD_ENV;
 
 const axiosInstance = axios.create({
-  // baseURL: 'http://localhost:3001'
-  baseURL: buildEnv === 'dev' ? devUrl : prodUrl
+  baseURL: buildEnv === 'prod' ? prodUrl : devUrl
 });
 
 export default axiosInstance;

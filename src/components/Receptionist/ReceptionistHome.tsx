@@ -6,7 +6,7 @@ import Appointments from './Appointments';
 
 import ReceptionistNav from './ReceptionistNavBar';
 
-const { Header, Content } = Layout;
+const { Content, Sider } = Layout;
 
 const ReceptionistHome = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
