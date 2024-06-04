@@ -8,12 +8,14 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../services/api';
+import { useStore } from '../../store/index';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
+  const { updateUsername, updatePractitionerId } = useStore();
 
   // called when login button clicked
   const handleLoginAttempt = async (event) => {
@@ -35,6 +37,9 @@ export default function Login() {
       } else if (user.role === 'receptionist') {
         navigate('/receptionist-home', { state: { receptionist: user } });
       } else if (user.role === 'practitioner') {
+        // Update the global state with the logged in practitioner's username
+        updateUsername(user.username);
+        updatePractitionerId(user._id);
         navigate('/practitioner-home', { state: { practitioner: user } });
       }
     } catch (error) {
