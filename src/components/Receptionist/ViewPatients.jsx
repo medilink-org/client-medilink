@@ -176,8 +176,12 @@ const ViewPatients = () => {
     <div className="view-patients-container">
       <div style={{ padding: '24px' }}>
         <Title
-          level={3}
-          style={{ margin: 0, textAlign: 'center', marginBottom: '20px' }}>
+          level={2}
+          style={{
+            margin: 0,
+            textAlign: 'center',
+            marginBottom: '20px'
+          }}>
           Patient List
         </Title>
         <Table

@@ -247,7 +247,7 @@ const AssignPatients = () => {
               onClick={() => handleDelete(record._id)}
               disabled={isDeleting}
               loading={isDeleting}
-              style={{ marginTop: '12px' }}
+              style={{ marginTop: '4px' }}
             />
           </Tooltip>
         </Space>
@@ -278,9 +278,7 @@ const AssignPatients = () => {
           </Title>
         </Header>
         <Content style={{ marginTop: '30px' }}>
-          <div
-            className="site-layout-background"
-            style={{ padding: 24, minHeight: 360 }}>
+          <div style={{ padding: 24, minHeight: 360 }}>
             <Row gutter={16}>
               <Col xs={24} sm={24} md={16}>
                 <Table
