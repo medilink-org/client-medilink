@@ -1,13 +1,38 @@
 # MediLink
 
-![Team Photo](Insert a Team Photo URL here)
-[_how?_](https://help.github.com/articles/about-readmes/#relative-links-and-image-paths-in-readme-files)
+MediLink addresses these challenges by providing a modern, user-friendly healthcare management system that streamlines medical recordkeeping and enhances communication between departments. By automating tasks like patient data entry and appointment scheduling, MediLink improves efficiency and ensures accurate, up-to-date information is readily available to healthcare providers, ultimately leading to better patient outcomes and more efficient use of resources.
 
-TODO: short project description, some sample screenshots or mockups
+Please visit our notion page [here](https://brunchlabs.notion.site/MediLink-c0234435571f4924b23366ffe9bd1b17) for more details.
 
 ## Architecture
 
-TODO: descriptions of code organization and tools and libraries used
+Our application is built in React and uses RTK Query to handle API requests and responses. We use Material UI and Ant Design for most of our styling and Plotly.js for data visualization. The app uses React-Router for navigation, and it is built with a browser in mind and so some pages, specifically the practitioner's views were not at all configured for mobile use, as we assume that anytime a practitioner is seeing a patient they will have access to a computer.
+
+We built this app with the intention of it being a tech demo, and as such we have not implemented any sort of real user authentication. You can log in to the demo accounts using the following credentials:
+
+### Practitioners
+
+#### Dr. Demo, MD
+
+- Username: `demo1`
+- Password: `password`
+
+#### Dr. Demo Jr. MD
+
+- Username: `demo2`
+- Password: `password`
+
+### Receptionist
+
+- Username: `receptionist1`
+- Password: `password1`
+
+### Admin
+
+- Username: `admin1`
+- Password: `password1`
+
+Additionally, one can easily create any account of any role using the admin's dashboard.
 
 ## Setup
 
@@ -83,6 +108,8 @@ A deployed version of the frontend lives at [medilink-frontend](https://medilink
 
 ## Authors
 
-Aimen Abdulaziz, Caleb Ash, Sajjad Kareem, Tayeb Mohammedi
+Aimen Abdulaziz, Sajjad Kareem, Caleb Ash, Tayeb Mohammedi
 
 ## Acknowledgments
+
+EasyEMR project
