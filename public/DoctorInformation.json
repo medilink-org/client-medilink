@@ -1,0 +1,18 @@
+[
+    {
+      "id": "65e7830edfd64159ca0b52d4",
+      "name": "Dr. Demo Jr",
+      "hometown": "Baltimore, Maryland",
+      "education": "B.S. in Biology from Johns Hopkins in 2008, M.D. from Baylor University in 2012",
+      "funFact": "I have been to 53 countries and 38 states!",
+      "image": "/img/dr_ford.jpg"
+    },
+    {
+      "id": "65e782efdfd64159ca0b52d2",
+      "name": "Dr. Demo",
+      "hometown": "Austin, Texas",
+      "education": "B.S. in Biology from Dartmouth College in 2008, M.D. from Temple University in 2012",
+      "funFact": "I have 2 kids aged four and seven and 2 dogs!",
+      "image": "/img/dr_johnson.webp"
+    }
+  ]
