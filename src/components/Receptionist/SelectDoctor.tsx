@@ -21,12 +21,8 @@ const SelectDoctor: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleSelectDoctorJohnson = () => {
-    navigate('/doctor-page-johnson');
-  };
-
-  const handleSelectDoctorFord = () => {
-    navigate('/doctor-page-ford');
+  const handleSelectDoctor = (doctorId: string) => {
+    navigate(`/doctor-page/${doctorId}`);
   };
 
   return (
@@ -38,7 +34,7 @@ const SelectDoctor: React.FC = () => {
       <div className="doctors-cards">
         <Card
           hoverable
-          onClick={handleSelectDoctorJohnson}
+          onClick={() => handleSelectDoctor('65e782efdfd64159ca0b52d2')}
           className="doctor-card"
           style={{ width: 240 }}
           cover={
@@ -48,7 +44,7 @@ const SelectDoctor: React.FC = () => {
         </Card>
         <Card
           hoverable
-          onClick={handleSelectDoctorFord}
+          onClick={() => handleSelectDoctor('65e7830edfd64159ca0b52d4')}
           className="doctor-card"
           style={{ width: 240 }}
           cover={<img alt="Picture of Dr. Ford" src="/img/dr_ford.jpg" />}>
