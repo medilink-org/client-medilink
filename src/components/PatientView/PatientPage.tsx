@@ -29,12 +29,7 @@ export default function PatientPage() {
   };
 
   const topBarProps = {
-    logo: '/img/medilink_logo.webp',
-    left: null,
     children: <CommandBar {...commandBarProps} />,
-    right: null,
-    style: null,
-    practitioner: practitioner,
     path: '/practitioner-home'
   };
 
