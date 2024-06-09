@@ -106,6 +106,10 @@ This will analyze your project and report any dependencies that are not being us
 
 A deployed version of the frontend lives at [medilink-frontend](https://medilink-frontend.onrender.com/)
 
+## Contributing
+
+We welcome contributions! Please see our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
 ## Authors
 
 Aimen Abdulaziz, Sajjad Kareem, Caleb Ash, Tayeb Mohammedi
